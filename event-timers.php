@@ -28,10 +28,8 @@ $template->returnHeader();
     <tr>
         <td data-id="section"></td>
         <td data-id="name">
-            <a data-id="val"target="_blank"></a>
-            <p>
-                <a data-id="complete" data-value href="javascript:void(0)"></a>
-            </p>
+            <a data-id="val" target="_blank"></a>
+            <a data-id="complete" data-value href="javascript:void(0)">(Toggle Completion)</a>
         </td>
         <td data-id="next"></td>
     </tr>
@@ -60,9 +58,7 @@ $template->returnHeader();
     <tr>
         <td data-id="name">
             <a data-id="val" target="_blank"></a>
-            <p>
-                <a data-id="complete" data-value href="javascript:void(0)"></a>
-            </p>
+            <a data-id="complete" data-value href="javascript:void(0)">(Toggle Completion)</a>
         </td>
         <td data-id="next"></td>
         <td data-id="others"></td>

@@ -104,6 +104,10 @@ nav ul li a i {
     height: unset;
     margin-top: 1rem;
     margin-bottom: 1rem;
+    position: sticky;
+    top: 0;
+    max-height: calc(100vh - 2rem);
+    overflow: auto;
   }
 }
 

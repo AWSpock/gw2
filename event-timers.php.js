@@ -28,6 +28,7 @@ if (localStorage.getItem(storageAutoName) === null) {
   storageAuto = JSON.parse(localStorage.getItem(storageAutoName));
 }
 
+var event_ready = false;
 var response = fetch("/_data/event-timers.json", {
   method: "GET",
 })
@@ -98,8 +99,7 @@ var response = fetch("/_data/event-timers.json", {
           storageManual.push({ key: val.manual, value: false });
           setStorage(storageManualName, storageManual);
         }
-        clone.querySelector("[data-id='name'] [data-id='complete']").innerText =
-          "Toggle Completion";
+        
         clone
           .querySelector("[data-id='name'] [data-id='complete']")
           .setAttribute("data-value", val.manual);
@@ -115,7 +115,7 @@ var response = fetch("/_data/event-timers.json", {
 
         clone
           .querySelector("[data-id='name'] [data-id='complete']")
-          .parentElement.remove();
+          .remove();
 
         row.setAttribute("data-key", val.id);
 
@@ -170,8 +170,7 @@ var response = fetch("/_data/event-timers.json", {
       var row = clone.querySelector("tr");
 
       if (Object.hasOwn(val, "manual")) {
-        clone.querySelector("[data-id='name'] [data-id='complete']").innerText =
-          "Toggle Completion";
+        
         clone
           .querySelector("[data-id='name'] [data-id='complete']")
           .setAttribute("data-value", val.manual);
@@ -182,7 +181,7 @@ var response = fetch("/_data/event-timers.json", {
       } else {
         clone
           .querySelector("[data-id='name'] [data-id='complete']")
-          .parentElement.remove();
+          .remove();
 
         row.setAttribute("data-key", val.id);
 
@@ -203,8 +202,12 @@ var response = fetch("/_data/event-timers.json", {
     document.querySelectorAll("[data-id='complete']").forEach((el) => {
       el.addEventListener("click", toggleComplete);
     });
+
+    event_ready = true;
   });
 
+var mapchests = [];
+var mapchests_ready = false;
 var response = fetch(
   "https://api.guildwars2.com/v2/account/mapchests?v=latest&access_token=" +
     api_key,
@@ -214,16 +217,20 @@ var response = fetch(
 )
   .then((response) => response.json())
   .then((data) => {
+    mapchests = data;
     data.forEach((rec) => {
       storageAuto.find((obj) => obj.key === rec).value = true;
-      document.querySelectorAll("[data-key='" + val + "']").forEach((el) => {
+      document.querySelectorAll("[data-key='" + rec + "']").forEach((el) => {
         el.classList.add("complete");
       });
     });
     setStorage(storageAutoName, storageAuto);
+    mapchests_ready = true;
   });
 
-  var response = fetch(
+var worldbosses = [];
+var worldbosses_ready = false;
+var response = fetch(
   "https://api.guildwars2.com/v2/account/worldbosses?v=latest&access_token=" +
     api_key,
   {
@@ -232,14 +239,40 @@ var response = fetch(
 )
   .then((response) => response.json())
   .then((data) => {
+    worldbosses = data;
     data.forEach((rec) => {
       storageAuto.find((obj) => obj.key === rec).value = true;
-      document.querySelectorAll("[data-key='" + val + "']").forEach((el) => {
+      document.querySelectorAll("[data-key='" + rec + "']").forEach((el) => {
         el.classList.add("complete");
       });
     });
     setStorage(storageAutoName, storageAuto);
+    worldbosses_ready = true;
   });
+
+intervalCheck = setInterval(() => {
+  console.log("check..");
+  if (event_ready && mapchests_ready && worldbosses_ready) {
+    clearInterval(intervalCheck);
+    storageAuto.forEach((rec) => {
+      if (rec.value) {
+        var done = false;
+        if (mapchests.find((obj) => obj == rec.key)) done = true;
+        if (worldbosses.find((obj) => obj == rec.key)) done = true;
+
+        if (!done) {
+          rec.value = false;
+          document
+            .querySelectorAll("[data-key='" + rec.key + "']")
+            .forEach((el) => {
+              el.classList.remove("complete");
+            });
+        }
+      }
+    });
+    setStorage(storageAutoName, storageAuto);
+  }
+}, 1000);
 
 //
 
