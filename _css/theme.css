@@ -1,0 +1,24 @@
+:root {
+  --primary-background-color: rgb(27, 38, 44);
+  --secondary-background-color: rgb(18, 26, 30);
+
+  --primary-text-color: rgba(255, 255, 255, 0.87);
+  --primary-link-color: rgba(187, 225, 250, 0.87);
+  --primary-link-color-hover: rgba(187, 255, 250, 0.87);
+
+  --primary-font-style: Comfortaa;
+
+  --container-padding: 1rem;
+
+  --button-outline-color: rgba(0, 0, 0, 0);
+
+  --primary-button-background-color: rgb(0, 123, 255);
+  --primary-button-border-color: rgb(0, 123, 255);
+
+  --primary-box-shadow: 0.1rem 0.1rem 1rem black;
+
+  --menu-hover: #0f4c75;
+
+  --table-header-background-color: rgb(10, 14, 16);
+  --table-border-color: rgb(10, 14, 16);
+}

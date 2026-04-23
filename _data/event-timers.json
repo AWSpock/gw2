@@ -1,0 +1,665 @@
+[
+    {
+        "section": "Visions of Eternity",
+        "name": "Hammerhart Rumble!",
+        "times": [
+            "00:40",
+            "02:40",
+            "04:40",
+            "06:40",
+            "08:40",
+            "10:40",
+            "12:40",
+            "14:40",
+            "16:40",
+            "18:40",
+            "20:40",
+            "22:40"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/Hammerhart_Rumble!",
+        "occurrences": [],
+        "manual": "hammerhart_rumble_chest"
+    },
+    {
+        "section": "Visions of Eternity",
+        "name": "Secrets of the Weald",
+        "times": [
+            "01:40",
+            "03:40",
+            "05:40",
+            "07:40",
+            "09:40",
+            "11:40",
+            "13:40",
+            "15:40",
+            "17:40",
+            "19:40",
+            "21:40",
+            "23:40"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/Secrets_of_the_Weald",
+        "occurrences": [],
+        "manual": "secrets_of_the_weald_chest"
+    },
+    {
+        "section": "Janthir Wilds",
+        "name": "Convergence: Mount Balrior",
+        "times": [
+            "00:00",
+            "03:00",
+            "06:00",
+            "09:00",
+            "12:00",
+            "15:00",
+            "18:00",
+            "21:00"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/Convergence:_Mount_Balrior",
+        "occurrences": [],
+        "manual": "jw_convergences_chest"
+    },
+    {
+        "section": "Janthir Wilds",
+        "name": "Bava Nisos: A Titanic Voyage",
+        "times": [
+            "01:20",
+            "03:20",
+            "05:20",
+            "07:20",
+            "09:20",
+            "11:20",
+            "13:20",
+            "15:20",
+            "17:20",
+            "19:20",
+            "21:20",
+            "23:20"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/A_Titanic_Voyage",
+        "occurrences": [],
+        "manual": "a_titanic_voyage"
+    },
+    {
+        "section": "Janthir Wilds",
+        "name": "Janthir Syntri: Of Mists and Monsters",
+        "times": [
+            "00:30",
+            "02:30",
+            "04:30",
+            "06:30",
+            "08:30",
+            "10:30",
+            "12:30",
+            "14:30",
+            "16:30",
+            "18:30",
+            "20:30",
+            "20:30"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/Of_Mists_and_Monsters",
+        "occurrences": [],
+        "id": "wild_island_heros_choice_chest"
+    },
+    {
+        "section": "Secrets of the Obscure",
+        "name": "Convergence: Outer Nayos",
+        "times": [
+            "01:30",
+            "04:30",
+            "07:30",
+            "10:30",
+            "13:30",
+            "16:30",
+            "19:30",
+            "22:30"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/Convergence:_Outer_Nayos",
+        "occurrences": [],
+        "id": "convergence_heros_choice_chest"
+    },
+    {
+        "section": "Secrets of the Obscure",
+        "name": "Amnytas: The Defense of Amnytas",
+        "times": [
+            "00:00",
+            "02:00",
+            "04:00",
+            "06:00",
+            "08:00",
+            "10:00",
+            "12:00",
+            "14:00",
+            "16:00",
+            "18:00",
+            "20:00",
+            "22:00"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/The_Defense_of_Amnytas",
+        "occurrences": [],
+        "id": "amnytas_heros_choice_chest"
+    },
+    {
+        "section": "Secrets of the Obscure",
+        "name": "Skywatch Archipelago: Unlocking the Wizard's Tower",
+        "times": [
+            "01:00",
+            "03:00",
+            "05:00",
+            "07:00",
+            "09:00",
+            "11:00",
+            "13:00",
+            "15:00",
+            "17:00",
+            "19:00",
+            "21:00",
+            "23:00"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/Unlocking_the_Wizard's_Tower",
+        "occurrences": [],
+        "id": "skywatch_archipelago_heros_choice_chest"
+    },
+    {
+        "section": "End of Dragons",
+        "name": "The Echovald Wilds: The Gang War of Echovald",
+        "times": [
+            "00:30",
+            "02:30",
+            "04:30",
+            "06:30",
+            "08:30",
+            "10:30",
+            "12:30",
+            "14:30",
+            "16:30",
+            "18:30",
+            "20:30",
+            "22:30"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/The_Gang_War_of_Echovald",
+        "occurrences": [],
+        "id": "echovald_wilds_heros_choice_chest"
+    },
+    {
+        "section": "End of Dragons",
+        "name": "New Kaineng City: Kaineng Blackout",
+        "times": [
+            "00:00",
+            "02:00",
+            "04:00",
+            "06:00",
+            "08:00",
+            "10:00",
+            "12:00",
+            "14:00",
+            "16:00",
+            "18:00",
+            "20:00",
+            "22:00"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/Kaineng_Blackout",
+        "occurrences": [],
+        "id": "new_kaineng_city_heros_choice_chest"
+    },
+    {
+        "section": "End of Dragons",
+        "name": "Seitung Province: Aetherblade Assault",
+        "times": [
+            "01:30",
+            "03:30",
+            "05:30",
+            "07:30",
+            "09:30",
+            "11:30",
+            "13:30",
+            "15:30",
+            "17:30",
+            "19:30",
+            "21:30",
+            "23:30"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/Aetherblade_Assault",
+        "occurrences": [],
+        "id": "seitung_province_heros_choice_chest"
+    },
+    {
+        "section": "Icebrood Saga",
+        "name": "Dragonstorm",
+        "times": [
+            "01:00",
+            "03:00",
+            "05:00",
+            "07:00",
+            "09:00",
+            "11:00",
+            "13:00",
+            "15:00",
+            "17:00",
+            "19:00",
+            "21:00",
+            "23:00"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/Dragonstorm",
+        "occurrences": [],
+        "manual": "dragonstorm_chest"
+    },
+    {
+        "section": "Path of Fire",
+        "name": "Domain of Vabbi: Forged with Fire",
+        "times": [
+            "01:00",
+            "03:00",
+            "05:00",
+            "07:00",
+            "09:00",
+            "11:00",
+            "13:00",
+            "15:00",
+            "17:00",
+            "19:00",
+            "21:00",
+            "23:00"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/Forged_with_Fire",
+        "occurrences": [],
+        "id": "domain_of_vabbi_heros_choice_chest"
+    },
+    {
+        "section": "Path of Fire",
+        "name": "The Desolation: Maws of Torment",
+        "times": [
+            "00:30",
+            "02:30",
+            "04:30",
+            "06:30",
+            "08:30",
+            "10:30",
+            "12:30",
+            "14:30",
+            "16:30",
+            "18:30",
+            "20:30",
+            "22:30"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/Maws_of_Torment",
+        "occurrences": [],
+        "id": "the_desolation_heros_choice_chest"
+    },
+    {
+        "section": "Path of Fire",
+        "name": "Elon Riverlands: The Path to Ascension and Doppelganger",
+        "times": [
+            "01:30",
+            "03:30",
+            "05:30",
+            "07:30",
+            "09:30",
+            "11:30",
+            "13:30",
+            "15:30",
+            "17:30",
+            "19:30",
+            "21:30",
+            "23:30"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/The_Path_to_Ascension",
+        "occurrences": [],
+        "id": "elon_riverlands_heros_choice_chest"
+    },
+    {
+        "section": "Path of Fire",
+        "name": "Desert Highlands: Buried Treasure",
+        "times": [
+            "01:00",
+            "03:00",
+            "05:00",
+            "07:00",
+            "09:00",
+            "11:00",
+            "13:00",
+            "15:00",
+            "17:00",
+            "19:00",
+            "21:00",
+            "23:00"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/The_Search_for_Buried_Treasure",
+        "occurrences": []
+    },
+    {
+        "section": "Path of Fire",
+        "name": "Crystal Oasis: Rounds and Pinata",
+        "times": [
+            "00:05",
+            "02:05",
+            "04:05",
+            "06:05",
+            "08:05",
+            "10:05",
+            "12:05",
+            "14:05",
+            "16:05",
+            "18:05",
+            "20:05",
+            "22:05"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/Casino_Blitz",
+        "occurrences": [],
+        "id": "crystal_oasis_heros_choice_chest"
+    },
+    {
+        "section": "Heart of Thorns",
+        "name": "Dragon's Stand: Advancing on the Blighting Towers",
+        "times": [
+            "01:30",
+            "03:30",
+            "05:30",
+            "07:30",
+            "09:30",
+            "11:30",
+            "13:30",
+            "15:30",
+            "17:30",
+            "19:30",
+            "21:30",
+            "23:30"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/Advancing_on_the_Blighting_Towers",
+        "occurrences": [],
+        "id": "dragons_stand_heros_choice_chest"
+    },
+    {
+        "section": "Heart of Thorns",
+        "name": "Tangled Depths: King of the Jungle",
+        "times": [
+            "00:30",
+            "02:30",
+            "04:30",
+            "06:30",
+            "08:30",
+            "10:30",
+            "12:30",
+            "14:30",
+            "16:30",
+            "18:30",
+            "20:30",
+            "22:30"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/King_of_the_Jungle",
+        "occurrences": [],
+        "id": "tangled_depths_heros_choice_chest"
+    },
+    {
+        "section": "Heart of Thorns",
+        "name": "Auric Basin: Battle in Tarir",
+        "times": [
+            "01:00",
+            "03:00",
+            "05:00",
+            "07:00",
+            "09:00",
+            "11:00",
+            "13:00",
+            "15:00",
+            "17:00",
+            "19:00",
+            "21:00",
+            "23:00"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/Battle_in_Tarir",
+        "occurrences": [],
+        "id": "auric_basin_heros_choice_chest"
+    },
+    {
+        "section": "Heart of Thorns",
+        "name": "Verdant Brink: Night and the Enemy",
+        "times": [
+            "01:45",
+            "03:45",
+            "05:45",
+            "07:45",
+            "09:45",
+            "11:45",
+            "13:45",
+            "15:45",
+            "17:45",
+            "19:45",
+            "21:45",
+            "23:45"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/Night_and_the_Enemy",
+        "occurrences": [],
+        "id": "verdant_brink_heros_choice_chest"
+    },
+    {
+        "section": "World Bosses - Low",
+        "name": "Svanir Shaman Chief",
+        "times": [
+            "00:15",
+            "02:15",
+            "04:15",
+            "06:15",
+            "08:15",
+            "10:15",
+            "12:15",
+            "14:15",
+            "16:15",
+            "18:15",
+            "20:15",
+            "22:15"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/The_Frozen_Maw",
+        "occurrences": [],
+        "id": "svanir_shaman_chief"
+    },
+    {
+        "section": "World Bosses - Low",
+        "name": "Fire Elemental",
+        "times": [
+            "00:45",
+            "02:45",
+            "04:45",
+            "06:45",
+            "08:45",
+            "10:45",
+            "12:45",
+            "14:45",
+            "16:45",
+            "18:45",
+            "20:45",
+            "22:45"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/Thaumanova_Reactor_Fallout",
+        "occurrences": [],
+        "id": "fire_elemental"
+    },
+    {
+        "section": "World Bosses - Low",
+        "name": "Great Jungle Wurm",
+        "times": [
+            "01:15",
+            "03:15",
+            "05:15",
+            "07:15",
+            "09:15",
+            "11:15",
+            "13:15",
+            "15:15",
+            "17:15",
+            "19:15",
+            "21:15",
+            "23:15"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/The_Battle_for_Wychmire_Swamp",
+        "occurrences": [],
+        "id": "great_jungle_wurm"
+    },
+    {
+        "section": "World Bosses - Low",
+        "name": "Shadow Behemoth",
+        "times": [
+            "01:45",
+            "03:45",
+            "05:45",
+            "07:45",
+            "09:45",
+            "11:45",
+            "13:45",
+            "15:45",
+            "17:45",
+            "19:45",
+            "21:45",
+            "23:45"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/Secrets_in_the_Swamp",
+        "occurrences": [],
+        "id": "shadow_behemoth"
+    },
+    {
+        "section": "World Bosses - Standard",
+        "name": "Admiral Taidha Covington",
+        "times": [
+            "00:00",
+            "03:00",
+            "06:00",
+            "09:00",
+            "12:00",
+            "15:00",
+            "18:00",
+            "21:00"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/The_Campaign_Against_Taidha_Covington",
+        "occurrences": [],
+        "id": "admiral_taidha_covington"
+    },
+    {
+        "section": "World Bosses - Standard",
+        "name": "Megadestroyer",
+        "times": [
+            "00:30",
+            "03:30",
+            "06:30",
+            "09:30",
+            "12:30",
+            "15:30",
+            "18:30",
+            "21:30"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/The_Battle_for_Mount_Maelstrom",
+        "occurrences": [],
+        "id": "megadestroyer"
+    },
+    {
+        "section": "World Bosses - Standard",
+        "name": "The Shatterer",
+        "times": [
+            "01:00",
+            "04:00",
+            "07:00",
+            "10:00",
+            "13:00",
+            "16:00",
+            "19:00",
+            "22:00"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/Slay_the_Shatterer",
+        "occurrences": [],
+        "id": "the_shatterer"
+    },
+    {
+        "section": "World Bosses - Standard",
+        "name": "Modniir Ulgoth",
+        "times": [
+            "01:30",
+            "04:30",
+            "07:30",
+            "10:30",
+            "13:30",
+            "16:30",
+            "19:30",
+            "22:30"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/Defeat_Ulgoth_the_Modniir_and_his_minions",
+        "occurrences": [],
+        "id": "modniir_ulgoth"
+    },
+    {
+        "section": "World Bosses - Standard",
+        "name": "Inquest Golem Mark II",
+        "times": [
+            "02:00",
+            "05:00",
+            "08:00",
+            "11:00",
+            "14:00",
+            "17:00",
+            "20:00",
+            "23:00"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/Defeat_the_Inquest%27s_golem_Mark_II",
+        "occurrences": [],
+        "id": "inquest_golem_mark_ii"
+    },
+    {
+        "section": "World Bosses - Standard",
+        "name": "Claw of Jormag",
+        "times": [
+            "02:30",
+            "05:30",
+            "08:30",
+            "11:30",
+            "14:30",
+            "17:30",
+            "20:30",
+            "23:30"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/Breaking_the_Claw_of_Jormag",
+        "occurrences": [],
+        "id": "claw_of_jormag"
+    },
+    {
+        "section": "World Bosses - Hard",
+        "name": "Tequatl the Sunless",
+        "times": [
+            "00:00",
+            "03:00",
+            "07:00",
+            "11:30",
+            "16:00",
+            "19:00"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/Defeat_Tequatl_the_Sunless",
+        "occurrences": [],
+        "id": "tequatl_the_sunless"
+    },
+    {
+        "section": "World Bosses - Hard",
+        "name": "Triple Trouble",
+        "times": [
+            "01:00",
+            "04:00",
+            "08:00",
+            "12:30",
+            "17:00",
+            "20:00"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/Triple_Trouble",
+        "occurrences": [],
+        "id": "triple_trouble_wurm"
+    },
+    {
+        "section": "World Bosses - Hard",
+        "name": "Karka Queen",
+        "times": [
+            "02:00",
+            "06:00",
+            "10:30",
+            "15:00",
+            "18:00",
+            "23:00"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/Defeat_the_Karka_Queen_threatening_the_settlements",
+        "occurrences": [],
+        "id": "karka_queen"
+    }
+]

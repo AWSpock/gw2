@@ -1,0 +1,60 @@
+@media only screen and (min-width: 768px) {
+}
+
+@media only screen and (min-width: 1024px) {
+}
+
+@media only screen and (min-width: 1280px) {
+}
+
+@media only screen and (min-width: 1580px) {
+}
+
+.form-group {
+  padding-bottom: 0.5rem;
+}
+
+.button {
+  font-size: 1rem;
+  cursor: pointer;
+  transition: 0.5s;
+  border-radius: 0.4rem;
+  border-style: groove;
+  border-width: 0.2rem;
+  padding: 0.5rem 0.75rem;
+  outline-style: solid;
+  outline-width: 0.25rem;
+  outline-color: var(--button-outline-color);
+}
+
+.button.primary {
+  background-color: var(--primary-button-background-color);
+  border-color: var(--primary-button-border-color);
+  color: var(--primary-text-color);
+}
+
+.button.primary:hover {
+  border-style: outset;
+  box-shadow: var(--primary-box-shadow);
+}
+
+label.form-control {
+  display: block;
+  padding-bottom: 0.25rem;
+  font-weight: 600;
+}
+
+input.form-control {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  width: 100%;
+  border-color: var(--primary-background-color);
+  border-radius: 0.4rem;
+  border-style: none;
+  padding: 0.7em;
+  font-size: 1rem;
+  font-family: Comfortaa;
+  margin-bottom: 0.75rem;
+}
+

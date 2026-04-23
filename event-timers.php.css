@@ -1,0 +1,17 @@
+td[data-id="next"] {
+  width: 100px;
+  text-align: center;
+}
+
+table p {
+  margin-block-start: 0.5rem;
+  margin-block-end: 0.5rem;
+}
+
+tr.complete {
+  background-color: black;
+  color: rgba(255, 255, 255, 0.4) !important;
+}
+tr.complete [data-id="val"] {
+  text-decoration: line-through;
+}
