@@ -124,3 +124,18 @@ table td {
   border-bottom-width: 1px;
   border-bottom-style: solid;
 }
+
+table td.small-col {
+  width: 10%;
+  min-width: 20px;
+}
+
+img.icon {
+  max-width: 30px;
+}
+
+@media only screen and (min-width: 768px) {
+  img.icon {
+    max-width: 64px;
+  }
+}

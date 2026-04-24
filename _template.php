@@ -96,6 +96,7 @@ class Template
                     <li><a href="/<?php $this->echoApiKeyLink(); ?>" class="hvr-icon-buzz-out hvr-bounce-to-right"><i class="fa-solid fa-home hvr-icon"></i>Account</a></li>
                     <li><a href="/todo.php<?php $this->echoApiKeyLink(); ?>" class="hvr-icon-buzz-out hvr-bounce-to-right"><i class="fa-solid fa-list-check hvr-icon"></i>To Do Lists</a></li>
                     <li><a href="/event-timers.php<?php $this->echoApiKeyLink(); ?>" class="hvr-icon-buzz-out hvr-bounce-to-right"><i class="fa-solid fa-clock hvr-icon"></i>Event Timers</a></li>
+                    <li><a href="/wallet.php<?php $this->echoApiKeyLink(); ?>" class="hvr-icon-buzz-out hvr-bounce-to-right"><i class="fa-solid fa-wallet hvr-icon"></i>Wallet</a></li>
                 </ul>
             </nav>
             <div class="content">
