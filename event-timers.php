@@ -7,13 +7,44 @@ $template = new Template();
 
 $template->returnHeader();
 
+$nowUtc = new DateTime("now", new DateTimeZone("UTC"));
+
+$events = json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/_data/event-timers.json"));
+$nextEvents = [];
+
+foreach ($events as $event) {
+    if (property_exists($event, "times")) {
+        foreach ($event->times as $time) {
+            $dt = new DateTime("today $time", new DateTimeZone("UTC"));
+            if ($dt <= $nowUtc)
+                $dt->modify("+1 day");
+            array_push($event->occurrences, $dt);
+        }
+        usort($event->occurrences, function ($a, $b) {
+            if ($a == $b) return 0;
+            return ($a < $b) ? -1 : 1;
+        });
+        array_push($nextEvents, $event);
+    }
+}
+
+usort($nextEvents, function ($a, $b) {
+    if ($a->occurrences[0] == $b->occurrences[0]) return 0;
+    return ($a->occurrences[0] < $b->occurrences[0]) ? -1 : 1;
+});
+
 ?>
 
 <h2>Event Timers</h2>
 
-<h3>Next</h3>
+<ul>
+    <li><a href="#next">Next Events</a></li>
+    <li><a href="#all">All Events</a></li>
+</ul>
 
-<table id="next">
+<h3 id="next">Next</h3>
+
+<table>
     <thead>
         <tr>
             <th>Section</th>
@@ -21,29 +52,47 @@ $template->returnHeader();
             <th>Next</th>
         </tr>
     </thead>
-    <tbody></tbody>
+    <tbody>
+        <?php
+        $time = new DateTime("now", new DateTimeZone("UTC"));
+        foreach ($nextEvents as $event) {
+            if ($time < $event->occurrences[0]) {
+                $time = $event->occurrences[0];
+        ?>
+                <tr class="divider">
+                    <th colspan="3"></th>
+                </tr>
+            <?php
+            }
+            $key = "";
+            if (property_exists($event, "manual"))
+                $key = $event->manual;
+            if (property_exists($event, "id"))
+                $key = $event->id;
+            ?>
+            <tr data-key="<?php echo $key; ?>">
+                <td data-id="section"><?php echo $event->section; ?></td>
+                <td data-id="name">
+                    <a data-id="val" target="_blank" href="<?php echo $event->url; ?>"><?php echo $event->name; ?></a>
+                    <?php
+                    if (property_exists($event, "manual")) {
+                    ?>
+                        <a data-id="complete" data-value="<?php echo $event->manual; ?>" href="javascript:void(0)">(Toggle Completion)</a>
+                    <?php
+                    }
+                    ?>
+                </td>
+                <td data-id="next" utc-convert><?php echo $event->occurrences[0]->format("Y-m-d\TH:i:s\Z"); ?></td>
+            </tr>
+        <?php
+        }
+        ?>
+    </tbody>
 </table>
 
-<template id="template_next">
-    <tr>
-        <td data-id="section"></td>
-        <td data-id="name">
-            <a data-id="val" target="_blank"></a>
-            <a data-id="complete" data-value href="javascript:void(0)">(Toggle Completion)</a>
-        </td>
-        <td data-id="next"></td>
-    </tr>
-</template>
+<h3 id="all">All Events</h3>
 
-<template id="template_next_section">
-    <tr class="divider">
-        <th colspan="3"></th>
-    </tr>
-</template>
-
-<h3>All Events</h3>
-
-<table id="all">
+<table>
     <thead>
         <tr>
             <th>Name</th>
@@ -51,25 +100,62 @@ $template->returnHeader();
             <th>Others</th>
         </tr>
     </thead>
-    <tbody></tbody>
+    <tbody>
+        <?php
+        $section = "";
+        foreach ($events as $event) {
+            if ($section !== $event->section) {
+                $section = $event->section;
+        ?>
+                <tr class="divider">
+                    <th colspan="3" data-id="section"><?php echo $section; ?></th>
+                </tr>
+            <?php
+            }
+            $key = "";
+            if (property_exists($event, "manual"))
+                $key = $event->manual;
+            if (property_exists($event, "id"))
+                $key = $event->id;
+            ?>
+            <tr data-key="<?php echo $key; ?>">
+                <td data-id="name">
+                    <a data-id="val" target="_blank" href="<?php echo $event->url; ?>"><?php echo $event->name; ?></a>
+                    <?php
+                    if (property_exists($event, "manual")) {
+                    ?>
+                        <a data-id="complete" data-value="<?php echo $event->manual; ?>" href="javascript:void(0)">(Toggle Completion)</a>
+                    <?php
+                    }
+                    ?>
+                </td>
+                <?php
+                if (property_exists($event, "occurrences")) {
+                ?>
+                    <td data-id="next" utc-convert><?php echo $event->occurrences[0]->format("Y-m-d\TH:i:s\Z"); ?></td>
+                    <td data-id="others">
+                        <?php
+                        for ($x = 1; $x < count($event->occurrences); $x++) {
+                        ?>
+                            <span utc-convert><?php echo $event->occurrences[$x]->format("Y-m-d\TH:i:s\Z"); ?></span><?php echo ($x < count($event->occurrences) - 1 ? ", " : ""); ?>
+                        <?php
+                        }
+                        ?>
+                    </td>
+                <?php
+                } else {
+                ?>
+                    <td>No Timer</td>
+                    <td>No Timer</td>
+                <?php
+                }
+                ?>
+            </tr>
+        <?php
+        }
+        ?>
+    </tbody>
 </table>
-
-<template id="template_all">
-    <tr>
-        <td data-id="name">
-            <a data-id="val" target="_blank"></a>
-            <a data-id="complete" data-value href="javascript:void(0)">(Toggle Completion)</a>
-        </td>
-        <td data-id="next"></td>
-        <td data-id="others"></td>
-    </tr>
-</template>
-
-<template id="template_all_section">
-    <tr class="divider">
-        <th colspan="3" data-id="section"></th>
-    </tr>
-</template>
 
 <?php
 

@@ -32,7 +32,7 @@ var response = fetch("https://api.guildwars2.com/v2/currencies?ids=all", {
     });
 
     var response1 = fetch(
-      "https://api.guildwars2.com/v2/account/wallet?v=latest&access_token=" +
+      "https://api.guildwars2.com/v2/account/wallet?access_token=" +
         api_key,
       {
         method: "GET",

@@ -102,6 +102,18 @@
     },
     {
         "section": "Secrets of the Obscure",
+        "name": "Citadel of Zakiors - Defeat Eparch, the Consumed King",
+        "url": "https://wiki.guildwars2.com/wiki/Inner_Nayos#Events",
+        "id": "inner_nayos_heros_choice_chest"
+    },
+    {
+        "section": "Secrets of the Obscure",
+        "name": "Inner Nayos - The Road to Heitor OR The Fangs That Gnash",
+        "url": "https://wiki.guildwars2.com/wiki/Inner_Nayos#Events",
+        "id": "citadel_of_zakiros_heros_choice_chest"
+    },
+    {
+        "section": "Secrets of the Obscure",
         "name": "Convergence: Outer Nayos",
         "times": [
             "01:30",
@@ -158,6 +170,33 @@
         "url": "https://wiki.guildwars2.com/wiki/Unlocking_the_Wizard's_Tower",
         "occurrences": [],
         "id": "skywatch_archipelago_heros_choice_chest"
+    },
+    {
+        "section": "End of Dragons",
+        "name": "Dragons End: The Battle for the Jad Sea",
+        "times": [
+            "01:00",
+            "03:00",
+            "05:00",
+            "07:00",
+            "09:00",
+            "11:00",
+            "13:00",
+            "15:00",
+            "17:00",
+            "19:00",
+            "21:00",
+            "23:00"
+        ],
+        "url": "https://wiki.guildwars2.com/wiki/The_Battle_for_the_Jade_Sea",
+        "occurrences": [],
+        "id": "dragons_end_heros_choice_chest"
+    },
+    {
+        "section": "End of Dragons",
+        "name": "Gyala Delve: The Jade Crisis",
+        "url": "https://wiki.guildwars2.com/wiki/Gyala_Delve#Events",
+        "id": "gyala_delve_heros_choice_chest"
     },
     {
         "section": "End of Dragons",
