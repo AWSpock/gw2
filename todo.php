@@ -106,9 +106,6 @@ $todoWs = json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/_data/todo
 
 <h4 id="wizards-vault-special">Special</h4>
 <p><a href="https://wiki.guildwars2.com/wiki/Wizard%27s_Vault#Special" target="_blank">Wiki Information</a></p>
-<div class="form-group">
-    <span class="alert alert-info"><strong>Overal Status: <span id="wzspecial-status">Checking..</span></strong></span>
-</div>
 <table id="wvspecial" class="form-group">
     <thead>
         <tr>

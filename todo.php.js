@@ -1,20 +1,11 @@
-var today = new Date();
-
-var daily_reset = new Date();
-daily_reset.setUTCHours(24, 0, 0, 0);
-
-var weekly_reset = new Date();
-weekly_reset.setUTCDate(
-  weekly_reset.getUTCDate() + ((1 + 7 - weekly_reset.getUTCDay()) % 7 || 7),
-);
-weekly_reset.setUTCHours(7, 30, 0, 0);
+var daily_reset = returnDailyReset();
+var weekly_reset = returnWeeklyReset();
 
 document.getElementById("daily-time").innerText =
   daily_reset.toLocaleTimeString([], {
     hour: "numeric",
     minute: "2-digit",
   });
-
 document.getElementById("weekly-time").innerText =
   weekly_reset.toLocaleDateString([], {
     weekday: "long",
@@ -31,7 +22,6 @@ var weekly_remaining = Math.abs(weekly_reset - today);
 document.getElementById("daily-remaining").innerText = secondsToTime(
   daily_remaining / 1000,
 );
-
 document.getElementById("weekly-remaining").innerText = secondsToTime(
   weekly_remaining / 1000,
 );
@@ -41,10 +31,8 @@ document.getElementById("weekly-remaining").innerText = secondsToTime(
 var loader = document.getElementById("loader");
 ShowLoader(loader);
 
-var daily_reset = new Date();
-daily_reset.setUTCHours(0, 0, 0, 0);
-
-var caching = Math.floor(Date.now() / (1000 * 60));
+var previous_daily_reset = new Date(daily_reset);
+previous_daily_reset.setUTCDate(previous_daily_reset.getUTCDate() - 1);
 
 var response = fetch(
   "https://api.guildwars2.com/v2/account?v=latest&access_token=" + api_key,
@@ -55,7 +43,7 @@ var response = fetch(
   .then((response) => response.json())
   .then((data) => {
     var last_modified = new Date(data.last_modified);
-    if (last_modified > daily_reset) {
+    if (last_modified > previous_daily_reset) {
       checkCompletion();
     } else {
       document.getElementById("play-message").style.display = "block";
@@ -120,10 +108,12 @@ async function checkCompletion() {
 
 function buildWV(section, data) {
   var progress = document.getElementById("wz" + section + "-status");
-  if (data.meta_progress_complete == data.meta_progress_current) {
-    progress.textContent = "Complete!";
-  } else {
-    progress.textContent = "Incomplete";
+  if (progress) {
+    if (data.meta_progress_complete == data.meta_progress_current) {
+      progress.textContent = "Complete!";
+    } else {
+      progress.textContent = "Incomplete";
+    }
   }
   data.objectives.forEach((rec) => {
     var complete = "No";
@@ -158,7 +148,6 @@ function buildCrafting(data) {
 
 //
 
-var today = new Date();
 var storage =
   today.getUTCFullYear() +
   "-" +
@@ -170,14 +159,10 @@ var storageDailyName = "todo_daily-" + storage;
 
 var storageDaily = [];
 
-function setStorage(name, data) {
-  localStorage.setItem(name, JSON.stringify(data));
-}
-
-if (localStorage.getItem(storageDailyName) === null) {
+if (getStorage(storageDailyName) === null) {
   setStorage(storageDailyName, storageDaily);
 } else {
-  storageDaily = JSON.parse(localStorage.getItem(storageDailyName));
+  storageDaily = JSON.parse(getStorage(storageDailyName));
 }
 
 storageDaily.forEach((rec) => {
@@ -238,11 +223,8 @@ function toggleComplete(e) {
 
 //
 
-var previous_weekly_reset = new Date();
-previous_weekly_reset.setUTCDate(
-  previous_weekly_reset.getUTCDate() - ((1 + 7 - weekly_reset.getUTCDay()) % 7 || 7),
-);
-previous_weekly_reset.setUTCHours(7, 30, 0, 0);
+var previous_weekly_reset = new Date(weekly_reset);
+previous_weekly_reset.setUTCDate(weekly_reset.getUTCDate() - 7);
 
 var storage =
   previous_weekly_reset.getUTCFullYear() +
@@ -255,14 +237,10 @@ var storageWeeklyName = "todo_weekly-" + storage;
 
 var storageWeekly = [];
 
-function setStorage(name, data) {
-  localStorage.setItem(name, JSON.stringify(data));
-}
-
-if (localStorage.getItem(storageWeeklyName) === null) {
+if (getStorage(storageWeeklyName) === null) {
   setStorage(storageWeeklyName, storageWeekly);
 } else {
-  storageWeekly = JSON.parse(localStorage.getItem(storageWeeklyName));
+  storageWeekly = JSON.parse(getStorage(storageWeeklyName));
 }
 
 storageWeekly.forEach((rec) => {

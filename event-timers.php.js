@@ -1,10 +1,8 @@
 var loader = document.getElementById("loader");
 ShowLoader(loader);
 
-var daily_reset = new Date();
-daily_reset.setUTCHours(0, 0, 0, 0);
-
-var caching = Math.floor(Date.now() / (1000 * 60));
+var previous_daily_reset = returnDailyReset();
+previous_daily_reset.setUTCDate(previous_daily_reset.getUTCDate() - 1);
 
 var response = fetch(
   "https://api.guildwars2.com/v2/account?v=latest&access_token=" + api_key,
@@ -15,7 +13,7 @@ var response = fetch(
   .then((response) => response.json())
   .then((data) => {
     var last_modified = new Date(data.last_modified);
-    if (last_modified > daily_reset) {
+    if (last_modified > previous_daily_reset) {
       checkCompletion();
     } else {
       document.getElementById("play-message").style.display = "block";
@@ -64,7 +62,6 @@ async function checkCompletion() {
 
 //
 
-var today = new Date();
 var storageName =
   today.getUTCFullYear() +
   "-" +
@@ -76,14 +73,10 @@ var storageManualName = "event_manual-" + storageName;
 
 var storageManual = [];
 
-function setStorage(name, data) {
-  localStorage.setItem(name, JSON.stringify(data));
-}
-
-if (localStorage.getItem(storageManualName) === null) {
+if (getStorage(storageManualName) === null) {
   setStorage(storageManualName, storageManual);
 } else {
-  storageManual = JSON.parse(localStorage.getItem(storageManualName));
+  storageManual = JSON.parse(getStorage(storageManualName));
 }
 
 storageManual.forEach((rec) => {

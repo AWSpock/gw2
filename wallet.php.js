@@ -41,8 +41,7 @@ var response = fetch("https://api.guildwars2.com/v2/currencies?ids=all", {
       .then((response1) => response1.json())
       .then((data1) => {
         data1.forEach((rec) => {
-          var nf = new Intl.NumberFormat("en-US");
-          var val = nf.format(rec.value);
+          var val = formatterInt.format(rec.value);
           if (rec.id == 1) val = calculateCoin(rec.value);
           document.querySelector("[data-value='" + rec.id + "']").innerText =
             val;

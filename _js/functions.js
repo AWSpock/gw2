@@ -1,3 +1,10 @@
+// constants
+
+var caching = Math.floor(Date.now() / (1000 * 60));
+var today = new Date();
+
+// loader
+
 function ShowLoader(div) {
   div.innerHTML =
     "<div class='loading'><div class='lds-ring'><div></div><div></div><div></div><div></div></div>LOADING</div>";
@@ -6,11 +13,9 @@ function HideLoader(div) {
   div.innerHTML = "";
 }
 
-//
+// auto convert dates
 
 var dates = document.querySelectorAll("[utc-convert]");
-
-// console.log(dates);
 
 dates.forEach((d) => {
   //   console.log(d);
@@ -21,32 +26,28 @@ dates.forEach((d) => {
   });
 });
 
-//
+// reset values
 
-var formatter2 = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-});
-var formatter3 = new Intl.NumberFormat("en-US", {
-  style: "currency",
-  currency: "USD",
-  maximumFractionDigits: 3,
-});
-var formatterGal = new Intl.NumberFormat("en-US", {
-  style: "unit",
-  unit: "gallon",
-  maximumFractionDigits: 3,
-});
-var formatterMile = new Intl.NumberFormat("en-US", {
-  style: "unit",
-  unit: "mile",
-  maximumFractionDigits: 3,
-});
+function returnDailyReset() {
+  var dt = new Date();
+  dt.setUTCHours(24, 0, 0, 0);
+  return dt;
+}
+
+function returnWeeklyReset() {
+  var dt = new Date();
+  dt.setUTCHours(7, 30, 0, 0);
+  while (dt.getUTCDay() != 1 || dt < new Date()) {
+    dt.setDate(dt.getDate() + 1);
+  }
+  return dt;
+}
+
+// formatters
+
 var formatterInt = new Intl.NumberFormat("en-US", {
   maximumFractionDigits: 0,
 });
-
-//
 
 function calculateCoin(balance) {
   var nf = new Intl.NumberFormat("en-US");
@@ -102,9 +103,19 @@ function secondsToTime(seconds, includeYear = true) {
   if (hours > 0) disp += hours + " hr" + " ";
   seconds = seconds - hours * 60 * 60;
   var minutes = Math.floor(seconds / 60);
-  if (minutes > 0) disp += minutes + " min" + " ";
+  if (minutes > 0 || disp == "") disp += minutes + " min" + " ";
   seconds = seconds - minutes * 60;
   // seconds = Math.floor(seconds);
   // if (seconds > 0) disp += seconds + " s" + " ";
   return disp;
+}
+
+// storage
+
+function setStorage(name, data) {
+  localStorage.setItem(name, JSON.stringify(data));
+}
+
+function getStorage(name) {
+  return localStorage.getItem(name);
 }
