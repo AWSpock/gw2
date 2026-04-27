@@ -155,3 +155,168 @@ function buildCrafting(data) {
     }
   });
 }
+
+//
+
+var today = new Date();
+var storage =
+  today.getUTCFullYear() +
+  "-" +
+  (today.getUTCMonth() + 1) +
+  "-" +
+  today.getUTCDate();
+
+var storageDailyName = "todo_daily-" + storage;
+
+var storageDaily = [];
+
+function setStorage(name, data) {
+  localStorage.setItem(name, JSON.stringify(data));
+}
+
+if (localStorage.getItem(storageDailyName) === null) {
+  setStorage(storageDailyName, storageDaily);
+} else {
+  storageDaily = JSON.parse(localStorage.getItem(storageDailyName));
+}
+
+storageDaily.forEach((rec) => {
+  document.querySelectorAll("[data-key='" + rec + "']").forEach((el) => {
+    el.classList.add("complete");
+  });
+});
+
+document.querySelectorAll("[data-id='daily']").forEach((el) => {
+  var value = el.getAttribute("data-value");
+  var rec = storageDaily.indexOf(value);
+  document.querySelectorAll("[data-key='" + value + "']").forEach((el) => {
+    if (rec > -1) {
+      el.classList.add("complete");
+    } else {
+      el.classList.remove("complete");
+    }
+  });
+  document.querySelectorAll("[data-value='" + value + "']").forEach((el) => {
+    if (rec > -1) {
+      el.textContent = "Yes";
+    } else {
+      el.textContent = "No";
+    }
+  });
+
+  el.addEventListener("click", toggleComplete);
+});
+
+function toggleComplete(e) {
+  var val = e.target.getAttribute("data-value");
+  var rec = storageDaily.indexOf(val);
+  var add = true;
+  if (rec > -1) {
+    storageDaily.splice(rec, 1);
+    add = false;
+  } else {
+    storageDaily.push(val);
+  }
+
+  setStorage(storageDailyName, storageDaily);
+
+  document.querySelectorAll("[data-key='" + val + "']").forEach((el) => {
+    if (add) {
+      el.classList.add("complete");
+    } else {
+      el.classList.remove("complete");
+    }
+  });
+  document.querySelectorAll("[data-value='" + val + "']").forEach((el) => {
+    if (add) {
+      el.textContent = "Yes";
+    } else {
+      el.textContent = "No";
+    }
+  });
+}
+
+//
+
+var previous_weekly_reset = new Date();
+previous_weekly_reset.setUTCDate(
+  previous_weekly_reset.getUTCDate() - ((1 + 7 - weekly_reset.getUTCDay()) % 7 || 7),
+);
+previous_weekly_reset.setUTCHours(7, 30, 0, 0);
+
+var storage =
+  previous_weekly_reset.getUTCFullYear() +
+  "-" +
+  (previous_weekly_reset.getUTCMonth() + 1) +
+  "-" +
+  previous_weekly_reset.getUTCDate();
+
+var storageWeeklyName = "todo_weekly-" + storage;
+
+var storageWeekly = [];
+
+function setStorage(name, data) {
+  localStorage.setItem(name, JSON.stringify(data));
+}
+
+if (localStorage.getItem(storageWeeklyName) === null) {
+  setStorage(storageWeeklyName, storageWeekly);
+} else {
+  storageWeekly = JSON.parse(localStorage.getItem(storageWeeklyName));
+}
+
+storageWeekly.forEach((rec) => {
+  document.querySelectorAll("[data-key='" + rec + "']").forEach((el) => {
+    el.classList.add("complete");
+  });
+});
+
+document.querySelectorAll("[data-id='weekly']").forEach((el) => {
+  var value = el.getAttribute("data-value");
+  var rec = storageWeekly.indexOf(value);
+  document.querySelectorAll("[data-key='" + value + "']").forEach((el) => {
+    if (rec > -1) {
+      el.classList.add("complete");
+    } else {
+      el.classList.remove("complete");
+    }
+  });
+  document.querySelectorAll("[data-value='" + value + "']").forEach((el) => {
+    if (rec > -1) {
+      el.textContent = "Yes";
+    } else {
+      el.textContent = "No";
+    }
+  });
+
+  el.addEventListener("click", toggleCompleteWeekly);
+});
+
+function toggleCompleteWeekly(e) {
+  var val = e.target.getAttribute("data-value");
+  var rec = storageWeekly.indexOf(val);
+  var add = true;
+  if (rec > -1) {
+    storageWeekly.splice(rec, 1);
+    add = false;
+  } else {
+    storageWeekly.push(val);
+  }
+
+  setStorage(storageWeeklyName, storageWeekly);
+
+  document.querySelectorAll("[data-key='" + val + "']").forEach((el) => {
+    if (add) {
+      el.classList.add("complete");
+    } else {
+      el.classList.remove("complete");
+    }
+  });
+  document.querySelectorAll("[data-value='" + val + "']").forEach((el) => {
+    if (add) {
+      el.textContent = "Yes";
+    } else {
+      el.textContent = "No";
+    }
+  });
+}

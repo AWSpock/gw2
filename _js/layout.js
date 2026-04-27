@@ -25,5 +25,7 @@ function toggleMenu(e) {
 //
 
 document.querySelectorAll("nav li a").forEach((link) => {
-  if (link.href === window.location.href) link.classList.add("active");
+  var curPage = window.location.pathname;
+  var compare = new URL(link.href).pathname;
+  if (compare === curPage) link.classList.add("active");
 });

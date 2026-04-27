@@ -7,6 +7,9 @@ $template = new Template();
 
 $template->returnHeader();
 
+$todos = json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/_data/todos-daily.json"));
+$todoWs = json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/_data/todos-weekly.json"));
+
 ?>
 
 <h2>To Do Lists</h2>
@@ -25,12 +28,18 @@ $template->returnHeader();
         </ul>
     </li>
     <li><a href="#crafting">Crafting</a></li>
+    <li><a href="#manual">Manual</a>
+        <ul>
+            <li><a href="#manual-daily">Daily</a></li>
+            <li><a href="#manual-weekly">Weekly</a></li>
+        </ul>
+    </li>
 </ul>
 
 <h3 id="resets">Resets</h3>
 <p><a href="https://wiki.guildwars2.com/wiki/Server_reset" target="_blank">Wiki Information</a></p>
 
-<table class="center">
+<table class="center form-group">
     <thead>
         <tr>
             <th>Daily</th>
@@ -49,6 +58,10 @@ $template->returnHeader();
     </tbody>
 </table>
 
+<div class="form-group">
+    <a href="#top">Top</a>
+</div>
+
 <h3 id="wizards-vault">Wizards Vault</h3>
 
 <h4 id="wizards-vault-daily">Daily</h4>
@@ -56,7 +69,7 @@ $template->returnHeader();
 <div class="form-group">
     <span class="alert alert-info"><strong>Overal Status: <span id="wzdaily-status">Checking..</span></strong></span>
 </div>
-<table id="wvdaily">
+<table id="wvdaily" class="form-group">
     <thead>
         <tr>
             <th>Complete?</th>
@@ -66,13 +79,17 @@ $template->returnHeader();
     </thead>
     <tbody></tbody>
 </table>
+
+<div class="form-group">
+    <a href="#top">Top</a>
+</div>
 
 <h4 id="wizards-vault-weekly">Weekly</h4>
 <p><a href="https://wiki.guildwars2.com/wiki/Wizard%27s_Vault#Weekly" target="_blank">Wiki Information</a></p>
 <div class="form-group">
     <span class="alert alert-info"><strong>Overal Status: <span id="wzweekly-status">Checking..</span></strong></span>
 </div>
-<table id="wvweekly">
+<table id="wvweekly" class="form-group">
     <thead>
         <tr>
             <th>Complete?</th>
@@ -83,12 +100,16 @@ $template->returnHeader();
     <tbody></tbody>
 </table>
 
+<div class="form-group">
+    <a href="#top">Top</a>
+</div>
+
 <h4 id="wizards-vault-special">Special</h4>
 <p><a href="https://wiki.guildwars2.com/wiki/Wizard%27s_Vault#Special" target="_blank">Wiki Information</a></p>
 <div class="form-group">
     <span class="alert alert-info"><strong>Overal Status: <span id="wzspecial-status">Checking..</span></strong></span>
 </div>
-<table id="wvspecial">
+<table id="wvspecial" class="form-group">
     <thead>
         <tr>
             <th>Complete?</th>
@@ -98,6 +119,10 @@ $template->returnHeader();
     </thead>
     <tbody></tbody>
 </table>
+
+<div class="form-group">
+    <a href="#top">Top</a>
+</div>
 
 <template id="template-wv">
     <tr>
@@ -108,7 +133,7 @@ $template->returnHeader();
 </template>
 
 <h3 id="crafting">Crafting</h3>
-<table data-id="crafting">
+<table data-id="crafting" class="form-group">
     <thead>
         <tr>
             <th>Complete?</th>
@@ -138,6 +163,93 @@ $template->returnHeader();
         </tr>
     </tbody>
 </table>
+
+<div class="form-group">
+    <a href="#top">Top</a>
+</div>
+
+
+<h3 id="manual">Manual</h3>
+
+<h4 id="manual-daily">Daily</h4>
+<table class="form-group">
+    <thead>
+        <tr>
+            <th>Complete?</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        $section = "";
+        foreach ($todos as $todo) {
+            if ($section !== $todo->section) {
+                $section = $todo->section;
+        ?>
+                <tr class="divider">
+                    <th colspan="2" data-id="section"><?php echo $section; ?></th>
+                </tr>
+            <?php
+            }
+            ?>
+            <tr data-key="<?php echo $todo->id; ?>">
+                <td><a data-id="daily" data-value="<?php echo $todo->id; ?>" href="javascript:void(0)">Checking..</a></td>
+                <td data-id="name"><?php echo $todo->name; ?></td>
+            </tr>
+        <?php
+        }
+        ?>
+    </tbody>
+</table>
+
+<div class="form-group">
+    <a href="#top">Top</a>
+</div>
+
+<h4 id="manual-weekly">Weekly</h4>
+<table class="form-group">
+    <thead>
+        <tr>
+            <th>Complete?</th>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php
+        $section = "";
+        foreach ($todoWs as $todo) {
+            if ($section !== $todo->section) {
+                $section = $todo->section;
+        ?>
+                <tr class="divider">
+                    <th colspan="2" data-id="section">
+                        <?php
+                        if (property_exists($todo, "url")) {
+                        ?>
+                            <a href="<?php echo $todo->url; ?>" target="_blank"><?php echo $section; ?></a>
+                        <?php
+                        } else {
+                            echo $section;
+                        }
+                        ?>
+                    </th>
+                </tr>
+            <?php
+            }
+            ?>
+            <tr data-key="<?php echo $todo->id; ?>">
+                <td><a data-id="weekly" data-value="<?php echo $todo->id; ?>" href="javascript:void(0)">Checking..</a></td>
+                <td data-id="name"><?php echo $todo->name; ?></td>
+            </tr>
+        <?php
+        }
+        ?>
+    </tbody>
+</table>
+
+<div class="form-group">
+    <a href="#top">Top</a>
+</div>
 
 <?php
 

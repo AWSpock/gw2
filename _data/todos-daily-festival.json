@@ -1,0 +1,22 @@
+[
+    {
+        "section": "Dragon Bash",
+        "name": "Daily Achievements",
+        "id": "db_daily"
+    },
+    {
+        "section": "Dragon Bash",
+        "name": "Adventure: Pinata Bashing",
+        "id": "adventure_pinata_bashing"
+    },
+    {
+        "section": "Dragon Bash",
+        "name": "Time Trial: Dragon Bash Rally",
+        "id": "time_trial_dragon_bash_rally"
+    },
+    {
+        "section": "Dragon Bash",
+        "name": "Daily Bonus Pinata Smashing",
+        "id": "daily_bonus_pinata_smashing"
+    }
+]
