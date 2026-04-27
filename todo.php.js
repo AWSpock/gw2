@@ -35,3 +35,123 @@ document.getElementById("daily-remaining").innerText = secondsToTime(
 document.getElementById("weekly-remaining").innerText = secondsToTime(
   weekly_remaining / 1000,
 );
+
+//
+
+var loader = document.getElementById("loader");
+ShowLoader(loader);
+
+var daily_reset = new Date();
+daily_reset.setUTCHours(0, 0, 0, 0);
+
+var caching = Math.floor(Date.now() / (1000 * 60));
+
+var response = fetch(
+  "https://api.guildwars2.com/v2/account?v=latest&access_token=" + api_key,
+  {
+    method: "GET",
+  },
+)
+  .then((response) => response.json())
+  .then((data) => {
+    var last_modified = new Date(data.last_modified);
+    if (last_modified > daily_reset) {
+      checkCompletion();
+    } else {
+      document.getElementById("play-message").style.display = "block";
+      HideLoader(loader);
+    }
+  });
+
+async function checkCompletion() {
+  var [response1, response2, response3, response4] = await Promise.all([
+    fetch(
+      "https://api.guildwars2.com/v2/account/wizardsvault/daily?access_token=" +
+        api_key +
+        "&" +
+        caching,
+      {
+        method: "GET",
+      },
+    ),
+    fetch(
+      "https://api.guildwars2.com/v2/account/wizardsvault/weekly?access_token=" +
+        api_key +
+        "&" +
+        caching,
+      {
+        method: "GET",
+      },
+    ),
+    fetch(
+      "https://api.guildwars2.com/v2/account/wizardsvault/special?access_token=" +
+        api_key +
+        "&" +
+        caching,
+      {
+        method: "GET",
+      },
+    ),
+    fetch(
+      "https://api.guildwars2.com/v2/account/dailycrafting?access_token=" +
+        api_key +
+        "&" +
+        caching,
+      {
+        method: "GET",
+      },
+    ),
+  ]);
+
+  var data1 = await response1.json();
+  buildWV("daily", data1);
+
+  var data2 = await response2.json();
+  buildWV("weekly", data2);
+
+  var data3 = await response3.json();
+  buildWV("special", data3);
+
+  var data4 = await response4.json();
+  buildCrafting(data4);
+
+  HideLoader(loader);
+}
+
+function buildWV(section, data) {
+  var progress = document.getElementById("wz" + section + "-status");
+  if (data.meta_progress_complete == data.meta_progress_current) {
+    progress.textContent = "Complete!";
+  } else {
+    progress.textContent = "Incomplete";
+  }
+  data.objectives.forEach((rec) => {
+    var complete = "No";
+    if (rec.progress_complete && rec.progress_current)
+      complete = rec.progress_current + " of " + rec.progress_complete;
+    if (rec.claimed) complete = "Yes";
+
+    var template = document.getElementById("template-wv");
+
+    var clone = template.content.cloneNode(true);
+    if (complete === "Yes") clone.querySelector("tr").classList.add("complete");
+    clone.querySelector("[data-id='complete']").textContent = complete;
+    clone.querySelector("[data-id='type']").textContent = rec.track;
+    clone.querySelector("[data-id='name']").textContent = rec.title;
+
+    document.querySelector("#wv" + section + " tbody").append(clone);
+  });
+}
+
+function buildCrafting(data) {
+  var rows = document.querySelectorAll("table[data-id='crafting'] tbody tr");
+  rows.forEach((row) => {
+    var complete = row.querySelector("[data-id='complete']");
+    if (data.includes(row.id)) {
+      row.classList.add("complete");
+      complete.innerText = "Yes";
+    } else {
+      complete.innerText = "No";
+    }
+  });
+}

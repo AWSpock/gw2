@@ -21,4 +21,10 @@
 
   --table-header-background-color: rgb(10, 14, 16);
   --table-border-color: rgb(10, 14, 16);
+
+  --info-background: rgba(187, 225, 250, 0.87);
+  --info-text: black;
+
+  --complete-background: black;
+  --complete-text: rgba(255, 255, 255, 0.4);
 }

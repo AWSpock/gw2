@@ -9,8 +9,8 @@ table p {
 }
 
 tr.complete {
-  background-color: black;
-  color: rgba(255, 255, 255, 0.4) !important;
+  background-color: var(--complete-background);
+  color: var(--complete-text) !important;
 }
 tr.complete [data-id="val"] {
   text-decoration: line-through;

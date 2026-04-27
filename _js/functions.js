@@ -8,6 +8,21 @@ function HideLoader(div) {
 
 //
 
+var dates = document.querySelectorAll("[utc-convert]");
+
+// console.log(dates);
+
+dates.forEach((d) => {
+  //   console.log(d);
+  var dt = new Date(d.textContent);
+  d.textContent = dt.toLocaleTimeString([], {
+    hour: "numeric",
+    minute: "2-digit",
+  });
+});
+
+//
+
 var formatter2 = new Intl.NumberFormat("en-US", {
   style: "currency",
   currency: "USD",

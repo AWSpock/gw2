@@ -37,6 +37,10 @@ usort($nextEvents, function ($a, $b) {
 
 <h2>Event Timers</h2>
 
+<div class="alert alert-info" id="play-message" style="display:none;">
+    <p>You have not played today!</p>
+</div>
+
 <ul>
     <li><a href="#next">Next Events</a></li>
     <li><a href="#all">All Events</a></li>

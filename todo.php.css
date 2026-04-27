@@ -1,3 +1,8 @@
-table td {
+table.center td {
   text-align: center;
+}
+
+tr.complete {
+  background-color: var(--complete-background);
+  color: var(--complete-text) !important;
 }

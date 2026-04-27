@@ -111,6 +111,21 @@ nav ul li a i {
   }
 }
 
+/* alert */
+
+.alert {
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0.25rem 1rem;
+}
+
+.alert.alert-info {
+  background-color: var(--info-background);
+  color: var(--info-text);
+}
+
+/* table */
+
 table {
   width: 100%;
 }
