@@ -29,8 +29,7 @@ foreach ($events as $event) {
 }
 
 usort($nextEvents, function ($a, $b) {
-    if ($a->occurrences[0] == $b->occurrences[0]) return 0;
-    return ($a->occurrences[0] < $b->occurrences[0]) ? -1 : 1;
+    return [$a->occurrences[0], $b->section_sort] <=> [$b->occurrences[0], $a->section_sort];
 });
 
 ?>

@@ -1,6 +1,7 @@
 [
     {
         "section": "Visions of Eternity",
+        "section_sort": 10,
         "name": "Hammerhart Rumble!",
         "times": [
             "00:40",
@@ -22,6 +23,7 @@
     },
     {
         "section": "Visions of Eternity",
+        "section_sort": 10,
         "name": "Secrets of the Weald",
         "times": [
             "01:40",
@@ -43,6 +45,7 @@
     },
     {
         "section": "Janthir Wilds",
+        "section_sort": 9,
         "name": "Convergence: Mount Balrior",
         "times": [
             "00:00",
@@ -60,6 +63,7 @@
     },
     {
         "section": "Janthir Wilds",
+        "section_sort": 9,
         "name": "Bava Nisos: A Titanic Voyage",
         "times": [
             "01:20",
@@ -81,6 +85,7 @@
     },
     {
         "section": "Janthir Wilds",
+        "section_sort": 9,
         "name": "Janthir Syntri: Of Mists and Monsters",
         "times": [
             "00:30",
@@ -102,18 +107,21 @@
     },
     {
         "section": "Secrets of the Obscure",
+        "section_sort": 8,
         "name": "Citadel of Zakiors - Defeat Eparch, the Consumed King",
         "url": "https://wiki.guildwars2.com/wiki/Inner_Nayos#Events",
         "id": "inner_nayos_heros_choice_chest"
     },
     {
         "section": "Secrets of the Obscure",
+        "section_sort": 8,
         "name": "Inner Nayos - The Road to Heitor OR The Fangs That Gnash",
         "url": "https://wiki.guildwars2.com/wiki/Inner_Nayos#Events",
         "id": "citadel_of_zakiros_heros_choice_chest"
     },
     {
         "section": "Secrets of the Obscure",
+        "section_sort": 8,
         "name": "Convergence: Outer Nayos",
         "times": [
             "01:30",
@@ -131,6 +139,7 @@
     },
     {
         "section": "Secrets of the Obscure",
+        "section_sort": 8,
         "name": "Amnytas: The Defense of Amnytas",
         "times": [
             "00:00",
@@ -152,6 +161,7 @@
     },
     {
         "section": "Secrets of the Obscure",
+        "section_sort": 8,
         "name": "Skywatch Archipelago: Unlocking the Wizard's Tower",
         "times": [
             "01:00",
@@ -173,6 +183,7 @@
     },
     {
         "section": "End of Dragons",
+        "section_sort": 7,
         "name": "Dragons End: The Battle for the Jad Sea",
         "times": [
             "01:00",
@@ -194,12 +205,14 @@
     },
     {
         "section": "End of Dragons",
+        "section_sort": 7,
         "name": "Gyala Delve: The Jade Crisis",
         "url": "https://wiki.guildwars2.com/wiki/Gyala_Delve#Events",
         "id": "gyala_delve_heros_choice_chest"
     },
     {
         "section": "End of Dragons",
+        "section_sort": 7,
         "name": "The Echovald Wilds: The Gang War of Echovald",
         "times": [
             "00:30",
@@ -221,6 +234,7 @@
     },
     {
         "section": "End of Dragons",
+        "section_sort": 7,
         "name": "New Kaineng City: Kaineng Blackout",
         "times": [
             "00:00",
@@ -242,6 +256,7 @@
     },
     {
         "section": "End of Dragons",
+        "section_sort": 7,
         "name": "Seitung Province: Aetherblade Assault",
         "times": [
             "01:30",
@@ -263,6 +278,7 @@
     },
     {
         "section": "Icebrood Saga",
+        "section_sort": 6,
         "name": "Dragonstorm",
         "times": [
             "01:00",
@@ -284,6 +300,7 @@
     },
     {
         "section": "Path of Fire",
+        "section_sort": 5,
         "name": "Domain of Vabbi: Forged with Fire",
         "times": [
             "01:00",
@@ -305,6 +322,7 @@
     },
     {
         "section": "Path of Fire",
+        "section_sort": 5,
         "name": "The Desolation: Maws of Torment",
         "times": [
             "00:30",
@@ -326,6 +344,7 @@
     },
     {
         "section": "Path of Fire",
+        "section_sort": 5,
         "name": "Elon Riverlands: The Path to Ascension and Doppelganger",
         "times": [
             "01:30",
@@ -347,6 +366,7 @@
     },
     {
         "section": "Path of Fire",
+        "section_sort": 5,
         "name": "Desert Highlands: Buried Treasure",
         "times": [
             "01:00",
@@ -367,6 +387,7 @@
     },
     {
         "section": "Path of Fire",
+        "section_sort": 5,
         "name": "Crystal Oasis: Rounds and Pinata",
         "times": [
             "00:05",
@@ -388,6 +409,7 @@
     },
     {
         "section": "Heart of Thorns",
+        "section_sort": 4,
         "name": "Dragon's Stand: Advancing on the Blighting Towers",
         "times": [
             "01:30",
@@ -409,6 +431,7 @@
     },
     {
         "section": "Heart of Thorns",
+        "section_sort": 4,
         "name": "Tangled Depths: King of the Jungle",
         "times": [
             "00:30",
@@ -430,6 +453,7 @@
     },
     {
         "section": "Heart of Thorns",
+        "section_sort": 4,
         "name": "Auric Basin: Battle in Tarir",
         "times": [
             "01:00",
@@ -451,6 +475,7 @@
     },
     {
         "section": "Heart of Thorns",
+        "section_sort": 4,
         "name": "Verdant Brink: Night and the Enemy",
         "times": [
             "01:45",
@@ -472,6 +497,7 @@
     },
     {
         "section": "World Bosses - Low",
+        "section_sort": 3,
         "name": "Svanir Shaman Chief",
         "times": [
             "00:15",
@@ -493,6 +519,7 @@
     },
     {
         "section": "World Bosses - Low",
+        "section_sort": 3,
         "name": "Fire Elemental",
         "times": [
             "00:45",
@@ -514,6 +541,7 @@
     },
     {
         "section": "World Bosses - Low",
+        "section_sort": 3,
         "name": "Great Jungle Wurm",
         "times": [
             "01:15",
@@ -535,6 +563,7 @@
     },
     {
         "section": "World Bosses - Low",
+        "section_sort": 3,
         "name": "Shadow Behemoth",
         "times": [
             "01:45",
@@ -556,6 +585,7 @@
     },
     {
         "section": "World Bosses - Standard",
+        "section_sort": 2,
         "name": "Admiral Taidha Covington",
         "times": [
             "00:00",
@@ -573,6 +603,7 @@
     },
     {
         "section": "World Bosses - Standard",
+        "section_sort": 2,
         "name": "Megadestroyer",
         "times": [
             "00:30",
@@ -590,6 +621,7 @@
     },
     {
         "section": "World Bosses - Standard",
+        "section_sort": 2,
         "name": "The Shatterer",
         "times": [
             "01:00",
@@ -607,6 +639,7 @@
     },
     {
         "section": "World Bosses - Standard",
+        "section_sort": 2,
         "name": "Modniir Ulgoth",
         "times": [
             "01:30",
@@ -624,6 +657,7 @@
     },
     {
         "section": "World Bosses - Standard",
+        "section_sort": 2,
         "name": "Inquest Golem Mark II",
         "times": [
             "02:00",
@@ -641,6 +675,7 @@
     },
     {
         "section": "World Bosses - Standard",
+        "section_sort": 2,
         "name": "Claw of Jormag",
         "times": [
             "02:30",
@@ -658,6 +693,7 @@
     },
     {
         "section": "World Bosses - Hard",
+        "section_sort": 1,
         "name": "Tequatl the Sunless",
         "times": [
             "00:00",
@@ -673,6 +709,7 @@
     },
     {
         "section": "World Bosses - Hard",
+        "section_sort": 1,
         "name": "Triple Trouble",
         "times": [
             "01:00",
@@ -688,6 +725,7 @@
     },
     {
         "section": "World Bosses - Hard",
+        "section_sort": 1,
         "name": "Karka Queen",
         "times": [
             "02:00",
