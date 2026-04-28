@@ -1,0 +1,64 @@
+.box-10 {
+  display: grid;
+  grid-template-columns: repeat(5, auto);
+  column-gap: 0.5rem;
+  row-gap: 0.5rem;
+  justify-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.box-10:not(:last-child) {
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid;
+}
+.box-10:last-child {
+  margin-bottom: 1rem;
+}
+
+.box {
+  display: grid;
+  place-items: center;
+  grid-template-rows: 1fr auto;
+  width: 30px;
+}
+
+.box .empty {
+  height: 50%;
+  width: 50%;
+  background-color: var(--secondary-background-color);
+}
+
+.box .invisible {
+  visibility: hidden;
+}
+
+.box a {
+  display: grid;
+  place-items: center;
+}
+
+.box img {
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.box div[data-id="amount"],
+.box .invisible {
+  padding: 0.25rem;
+}
+
+@media only screen and (min-width: 900px) {
+  .box-10 {
+    grid-template-columns: repeat(10, auto);
+  }
+  .box {
+    width: 50px;
+  }
+}
+
+@media only screen and (min-width: 1080px) {
+  .box {
+    width: 70px;
+  }
+}
