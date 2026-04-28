@@ -35,7 +35,10 @@ var previous_daily_reset = new Date(daily_reset);
 previous_daily_reset.setUTCDate(previous_daily_reset.getUTCDate() - 1);
 
 var response = fetch(
-  "https://api.guildwars2.com/v2/account?v=latest&access_token=" + api_key,
+  "https://api.guildwars2.com/v2/account?v=latest&access_token=" +
+    api_key +
+    "&" +
+    caching,
   {
     method: "GET",
   },

@@ -8,8 +8,7 @@ var response = fetch("https://api.guildwars2.com/v2/currencies?ids=all", {
   .then((data) => {
     data.sort((a, b) => a.order - b.order);
     data.forEach((rec) => {
-        if(rec.name == "")
-            return;
+      if (rec.name == "") return;
 
       var template = document.getElementById("template");
       var clone = template.content.cloneNode(true);
@@ -33,7 +32,9 @@ var response = fetch("https://api.guildwars2.com/v2/currencies?ids=all", {
 
     var response1 = fetch(
       "https://api.guildwars2.com/v2/account/wallet?access_token=" +
-        api_key,
+        api_key +
+        "&" +
+        caching,
       {
         method: "GET",
       },

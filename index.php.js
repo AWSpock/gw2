@@ -6,7 +6,10 @@ ShowLoader(loader);
 //
 
 var response = fetch(
-  "https://api.guildwars2.com/v2/account?v=latest&access_token=" + api_key,
+  "https://api.guildwars2.com/v2/account?v=latest&access_token=" +
+    api_key +
+    "&" +
+    caching,
   {
     method: "GET",
   },
