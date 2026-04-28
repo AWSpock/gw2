@@ -7,11 +7,11 @@
   margin-bottom: 0.5rem;
 }
 
-.box-10:not(:last-child) {
+.box-contain:not(:last-child) {
   padding-bottom: 0.5rem;
   border-bottom: 1px solid;
 }
-.box-10:last-child {
+.box-contain:last-child {
   margin-bottom: 1rem;
 }
 

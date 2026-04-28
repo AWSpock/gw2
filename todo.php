@@ -18,7 +18,7 @@ $todoWs = json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/_data/todo
     <p>You have not played today!</p>
 </div>
 
-<ul>
+<ul id="bookmarks">
     <li><a href="#resets">Resets</a></li>
     <li><a href="#wizards-vault">Wizards Vault</a>
         <ul>
@@ -30,11 +30,18 @@ $todoWs = json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/_data/todo
     <li><a href="#crafting">Crafting</a></li>
     <li><a href="#manual">Manual</a>
         <ul>
-            <li><a href="#manual-daily">Daily</a></li>
-            <li><a href="#manual-weekly">Weekly</a></li>
+            <li><a href="#manual-daily">Daily</a>
+                <ul id="bookmarks-manual-daily"></ul>
+            </li>
+            <li><a href="#manual-weekly">Weekly</a>
+                <ul id="bookmarks-manual-weekly"></ul>
+            </li>
         </ul>
     </li>
 </ul>
+<template id="template-bookmark">
+    <li><a></a></li>
+</template>
 
 <h3 id="resets">Resets</h3>
 <p><a href="https://wiki.guildwars2.com/wiki/Server_reset" target="_blank">Wiki Information</a></p>
@@ -169,7 +176,7 @@ $todoWs = json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/_data/todo
 <h3 id="manual">Manual</h3>
 
 <h4 id="manual-daily">Daily</h4>
-<table class="form-group">
+<table class="form-group" id="tb-manual-daily">
     <thead>
         <tr>
             <th>Complete?</th>
@@ -183,7 +190,7 @@ $todoWs = json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/_data/todo
             if ($section !== $todo->section) {
                 $section = $todo->section;
         ?>
-                <tr class="divider">
+                <tr class="divider" id="manual-daily-<?php echo $section; ?>">
                     <th colspan="2" data-id="section"><?php echo $section; ?></th>
                 </tr>
             <?php
@@ -204,7 +211,7 @@ $todoWs = json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/_data/todo
 </div>
 
 <h4 id="manual-weekly">Weekly</h4>
-<table class="form-group">
+<table class="form-group" id="tb-manual-weekly">
     <thead>
         <tr>
             <th>Complete?</th>
@@ -219,7 +226,7 @@ $todoWs = json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/_data/todo
                 $section = $todo->section;
         ?>
                 <tr class="divider">
-                    <th colspan="2" data-id="section">
+                    <th colspan="2" data-id="section" id="manual-weekly-<?php echo $section; ?>">
                         <?php
                         if (property_exists($todo, "url")) {
                         ?>

@@ -11,6 +11,12 @@ $template->returnHeader();
 
 <h2>Material Storage</h2>
 
+<ul id="bookmarks"></ul>
+
+<template id="template-bookmark">
+    <li><a></a></li>
+</template>
+
 <div class="form-group" style="display:none;">
     <input type="text" class="form-control" placeholder="Search.." id="txtSearch" />
 </div>
@@ -21,7 +27,12 @@ $template->returnHeader();
 </template>
 
 <template id="template-box">
-    <div class="box-10" data-id="box"></div>
+    <div class="box-contain">
+        <div class="box-10" data-id="box"></div>
+        <div class="form-group">
+            <a href="#top">Top</a>
+        </div>
+    </div>
 </template>
 
 <template id="template-item">

@@ -301,3 +301,27 @@ function toggleCompleteWeekly(e) {
     }
   });
 }
+
+//
+
+var templateBookmark = document.getElementById("template-bookmark");
+
+document
+  .querySelectorAll("#tb-manual-daily [data-id='section']")
+  .forEach((rec) => {
+    var bookmark = templateBookmark.content.cloneNode(true);
+    var a = bookmark.querySelector("a");
+    a.href = "#manual-daily-" + rec.innerText;
+    a.innerText = rec.innerText;
+    document.getElementById("bookmarks-manual-daily").append(bookmark);
+  });
+
+document
+  .querySelectorAll("#tb-manual-weekly [data-id='section']")
+  .forEach((rec) => {
+    var bookmark = templateBookmark.content.cloneNode(true);
+    var a = bookmark.querySelector("a");
+    a.href = "#manual-weekly-" + rec.innerText;
+    a.innerText = rec.innerText;
+    document.getElementById("bookmarks-manual-weekly").append(bookmark);
+  });

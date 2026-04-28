@@ -23,9 +23,18 @@ async function Run() {
       data.sort((a, b) => a.order - b.order);
 
       data.forEach((rec) => {
+        var bookmark = document
+          .getElementById("template-bookmark")
+          .content.cloneNode(true);
+        var ba = bookmark.querySelector("a");
+        ba.href = "#section-" + rec.id;
+        ba.innerText = rec.name;
+        document.getElementById("bookmarks").append(bookmark);
+
         var section = sectionTemplate.content.cloneNode(true);
         var heading = section.querySelector("h3");
         heading.innerText = rec.name;
+        heading.id = "section-" + rec.id;
         heading.setAttribute("data-id", "section-" + rec.id);
         container.append(section);
 
