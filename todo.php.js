@@ -31,7 +31,7 @@ document.getElementById("weekly-remaining").innerText = secondsToTime(
 var loader = document.getElementById("loader");
 ShowLoader(loader);
 
-var previous_daily_reset = new Date(daily_reset);
+var previous_daily_reset = new Date(returnDailyReset());
 previous_daily_reset.setUTCDate(previous_daily_reset.getUTCDate() - 1);
 
 var response = fetch(
@@ -127,24 +127,21 @@ function buildWV(section, data) {
     var template = document.getElementById("template-wv");
 
     var clone = template.content.cloneNode(true);
-    if (complete === "Yes") clone.querySelector("tr").classList.add("complete");
+    if (complete === "Yes") clone.querySelector("[data-id='row']").classList.add("complete");
     clone.querySelector("[data-id='complete']").textContent = complete;
     clone.querySelector("[data-id='type']").textContent = rec.track;
     clone.querySelector("[data-id='name']").textContent = rec.title;
 
-    document.querySelector("#wv" + section + " tbody").append(clone);
+    document.querySelector("#wv" + section).append(clone);
   });
 }
 
 function buildCrafting(data) {
-  var rows = document.querySelectorAll("table[data-id='crafting'] tbody tr");
+  var rows = document.querySelectorAll("div[data-id='crafting'] div[data-id='row']");
   rows.forEach((row) => {
     var complete = row.querySelector("[data-id='complete']");
     if (data.includes(row.id)) {
       row.classList.add("complete");
-      complete.innerText = "Yes";
-    } else {
-      complete.innerText = "No";
     }
   });
 }
@@ -167,12 +164,6 @@ if (getStorage(storageDailyName) === null) {
 } else {
   storageDaily = JSON.parse(getStorage(storageDailyName));
 }
-
-storageDaily.forEach((rec) => {
-  document.querySelectorAll("[data-key='" + rec + "']").forEach((el) => {
-    el.classList.add("complete");
-  });
-});
 
 document.querySelectorAll("[data-id='daily']").forEach((el) => {
   var value = el.getAttribute("data-value");
@@ -226,8 +217,8 @@ function toggleComplete(e) {
 
 //
 
-var previous_weekly_reset = new Date(weekly_reset);
-previous_weekly_reset.setUTCDate(weekly_reset.getUTCDate() - 7);
+var previous_weekly_reset = new Date(returnDailyReset());
+previous_weekly_reset.setUTCDate(previous_weekly_reset.getUTCDate() - 7);
 
 var storage =
   previous_weekly_reset.getUTCFullYear() +
@@ -245,12 +236,6 @@ if (getStorage(storageWeeklyName) === null) {
 } else {
   storageWeekly = JSON.parse(getStorage(storageWeeklyName));
 }
-
-storageWeekly.forEach((rec) => {
-  document.querySelectorAll("[data-key='" + rec + "']").forEach((el) => {
-    el.classList.add("complete");
-  });
-});
 
 document.querySelectorAll("[data-id='weekly']").forEach((el) => {
   var value = el.getAttribute("data-value");
@@ -307,7 +292,7 @@ function toggleCompleteWeekly(e) {
 var templateBookmark = document.getElementById("template-bookmark");
 
 document
-  .querySelectorAll("#tb-manual-daily [data-id='section']")
+  .querySelectorAll("[data-id='manual-daily']")
   .forEach((rec) => {
     var bookmark = templateBookmark.content.cloneNode(true);
     var a = bookmark.querySelector("a");
@@ -317,7 +302,7 @@ document
   });
 
 document
-  .querySelectorAll("#tb-manual-weekly [data-id='section']")
+  .querySelectorAll("[data-id='manual-weekly']")
   .forEach((rec) => {
     var bookmark = templateBookmark.content.cloneNode(true);
     var a = bookmark.querySelector("a");

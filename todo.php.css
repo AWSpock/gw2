@@ -1,9 +1,129 @@
 table.center td {
   text-align: center;
 }
-
-tr.complete {
+div.complete {
   background-color: var(--complete-background);
   color: var(--complete-text) !important;
 }
 
+div.wizards-vault-daily {
+  grid-area: wv-daily;
+}
+div.wizards-vault-weekly {
+  grid-area: wv-weekly;
+}
+div.wizards-vault-special {
+  grid-area: wv-special;
+}
+
+div.table-wizards-vault {
+  display: grid;
+  row-gap: 0.25rem;
+}
+
+div.table-wizards-vault div[data-id="row"] {
+  display: grid;
+  grid-template-columns: 1fr auto 4fr;
+  column-gap: 0.5rem;
+  grid-template-areas: "complete type name";
+  padding: 0.5rem;
+}
+
+div.table-wizards-vault div[data-id="row"] div[data-id="complete"] {
+  grid-area: complete;
+  place-self: center;
+}
+div.table-wizards-vault div[data-id="row"] div[data-id="type"] {
+  grid-area: type;
+  place-self: center;
+}
+div.table-wizards-vault div[data-id="row"] div[data-id="type"]::after {
+  content: ":";
+}
+div.table-wizards-vault div[data-id="row"] div[data-id="name"] {
+  grid-area: name;
+}
+
+div.table-crafting {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 1rem;
+}
+
+div.table-crafting div[data-id="row"] {
+  padding: 0.5rem;
+  width: 100%;
+}
+div.table-crafting div[data-id="row"] div {
+  text-align: center;
+}
+
+div.manual-daily,
+div.manual-weekly {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 1rem;
+  row-gap: 0.5rem;
+}
+
+div.table-manual-daily,
+div.table-manual-weekly {
+  display: grid;
+  row-gap: 0.25rem;
+  height: fit-content;
+}
+
+div.table-manual-daily h5,
+div.table-manual-weekly h5 {
+  margin-block-start: 0.5rem;
+  margin-block-end: 0.5rem;
+}
+
+div.manual-daily div.table-manual-daily div[data-id="row"],
+div.manual-weekly div.table-manual-weekly div[data-id="row"] {
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  column-gap: 0.5rem;
+  padding: 0.5rem;
+}
+
+div.manual-daily div.table-manual-daily div[data-id="row"] div:first-child,
+div.manual-weekly div.table-manual-weekly div[data-id="row"] div:first-child {
+  place-self: center;
+}
+
+@media only screen and (min-width: 768px) {
+}
+
+@media only screen and (min-width: 1024px) {
+  div.wizards-vault {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    column-gap: 1rem;
+    grid-template-areas:
+      "wv-daily wv-daily"
+      "wv-weekly wv-special";
+  }
+
+  div.table-crafting {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media only screen and (min-width: 1280px) {
+  div.table-crafting {
+    grid-template-columns: repeat(5, 1fr);
+  }
+  div.manual-daily,
+  div.manual-weekly {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media only screen and (min-width: 1580px) {
+  div.wizards-vault {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas: "wv-daily wv-weekly wv-special";
+  }
+}

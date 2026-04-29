@@ -10,94 +10,94 @@
         "id": "pwte_weekly_sales"
     },
     {
-        "section": "Weekly Rift Hunting: Janthir Wilds",
+        "section": "Rift Hunting: Janthir Wilds",
         "name": "Lowland Shore",
         "id": "jw_lowland_shore",
         "url": "https://wiki.guildwars2.com/wiki/Weekly_Rift_Hunting_(Janthir_Wilds)"
     },
     {
-        "section": "Weekly Rift Hunting: Janthir Wilds",
+        "section": "Rift Hunting: Janthir Wilds",
         "name": "Syntri",
         "id": "jw_syntri"
     },
     {
-        "section": "Weekly Rift Hunting: Secrets of the Obscure",
+        "section": "Rift Hunting: Secrets of the Obscure",
         "name": "Skywatch Archipelago",
         "id": "soto_skywatch_archipelago",
         "url": "https://wiki.guildwars2.com/wiki/Weekly_Rift_Hunting#Weekly_rotation"
     },
     {
-        "section": "Weekly Rift Hunting: Secrets of the Obscure",
+        "section": "Rift Hunting: Secrets of the Obscure",
         "name": "Amnytas",
         "id": "soto_amnytas"
     },
     {
-        "section": "Weekly Rift Hunting: Secrets of the Obscure",
+        "section": "Rift Hunting: Secrets of the Obscure",
         "name": "Inner Nayos",
         "id": "soto_inner_nayos"
     },
     {
-        "section": "Weekly Rift Hunting: Secrets of the Obscure",
+        "section": "Rift Hunting: Secrets of the Obscure",
         "name": "Map 1",
         "id": "soto_map1"
     },
     {
-        "section": "Weekly Rift Hunting: Secrets of the Obscure",
+        "section": "Rift Hunting: Secrets of the Obscure",
         "name": "Map 2",
         "id": "soto_map2"
     },
     {
-        "section": "Weekly Rift Hunting: Secrets of the Obscure",
+        "section": "Rift Hunting: Secrets of the Obscure",
         "name": "Map 3",
         "id": "soto_map3"
     },
     {
-        "section": "Weekly Convergences: Janthir Wilds",
+        "section": "Convergences: Janthir Wilds",
         "name": "Convergences (x1)",
         "id": "jw_convergences1"
     },
     {
-        "section": "Weekly Convergences: Janthir Wilds",
+        "section": "Convergences: Janthir Wilds",
         "name": "Convergences (x2)",
         "id": "jw_convergences2"
     },
     {
-        "section": "Weekly Convergences: Janthir Wilds",
+        "section": "Convergences: Janthir Wilds",
         "name": "Convergences (x3)",
         "id": "jw_convergences3"
     },
     {
-        "section": "Weekly Convergences: Secrets of the Obscure",
+        "section": "Convergences: Secrets of the Obscure",
         "name": "Convergences (x1)",
         "id": "soto_convergences1"
     },
     {
-        "section": "Weekly Convergences: Secrets of the Obscure",
+        "section": "Convergences: Secrets of the Obscure",
         "name": "Convergences (x2)",
         "id": "soto_convergences2"
     },
     {
-        "section": "Weekly Convergences: Secrets of the Obscure",
+        "section": "Convergences: Secrets of the Obscure",
         "name": "Convergences (x3)",
         "id": "soto_convergences3"
     },
     {
-        "section": "Weekly Jade Statuettes: End of Dragons",
+        "section": "Jade Statuettes: End of Dragons",
         "name": "Jade Empress Statuette (Seitung Province)",
         "id": "statuette_seitung_province"
     },
     {
-        "section": "Weekly Jade Statuettes: End of Dragons",
+        "section": "Jade Statuettes: End of Dragons",
         "name": "Jade Gate Statuette (New Kaineng City)",
         "id": "statuette_new_kaineng_city"
     },
     {
-        "section": "Weekly Jade Statuettes: End of Dragons",
+        "section": "Jade Statuettes: End of Dragons",
         "name": "Jade Empress Statuette (The Echovald Wilds)",
         "id": "statuette_the_echovald_wilds"
     },
     {
-        "section": "Weekly Jade Statuettes: End of Dragons",
+        "section": "Jade Statuettes: End of Dragons",
         "name": "Jade Empress Statuette (Dragon's End)",
         "id": "statuette_dragons_end"
     }
