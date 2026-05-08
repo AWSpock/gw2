@@ -55,44 +55,48 @@ var response = fetch(
   });
 
 async function checkCompletion() {
-  var [response1, response2, response3, response4] = await Promise.all([
-    fetch(
-      "https://api.guildwars2.com/v2/account/wizardsvault/daily?access_token=" +
-        api_key +
-        "&" +
-        caching,
-      {
+  var [response1, response2, response3, response4, response5] =
+    await Promise.all([
+      fetch(
+        "https://api.guildwars2.com/v2/account/wizardsvault/daily?access_token=" +
+          api_key +
+          "&" +
+          caching,
+        {
+          method: "GET",
+        },
+      ),
+      fetch(
+        "https://api.guildwars2.com/v2/account/wizardsvault/weekly?access_token=" +
+          api_key +
+          "&" +
+          caching,
+        {
+          method: "GET",
+        },
+      ),
+      fetch(
+        "https://api.guildwars2.com/v2/account/wizardsvault/special?access_token=" +
+          api_key +
+          "&" +
+          caching,
+        {
+          method: "GET",
+        },
+      ),
+      fetch(
+        "https://api.guildwars2.com/v2/account/dailycrafting?access_token=" +
+          api_key +
+          "&" +
+          caching,
+        {
+          method: "GET",
+        },
+      ),
+      fetch("/api/todo-completion.php?api_key=" + api_key + "&" + caching, {
         method: "GET",
-      },
-    ),
-    fetch(
-      "https://api.guildwars2.com/v2/account/wizardsvault/weekly?access_token=" +
-        api_key +
-        "&" +
-        caching,
-      {
-        method: "GET",
-      },
-    ),
-    fetch(
-      "https://api.guildwars2.com/v2/account/wizardsvault/special?access_token=" +
-        api_key +
-        "&" +
-        caching,
-      {
-        method: "GET",
-      },
-    ),
-    fetch(
-      "https://api.guildwars2.com/v2/account/dailycrafting?access_token=" +
-        api_key +
-        "&" +
-        caching,
-      {
-        method: "GET",
-      },
-    ),
-  ]);
+      }),
+    ]);
 
   var data1 = await response1.json();
   buildWV("daily", data1);
@@ -105,6 +109,9 @@ async function checkCompletion() {
 
   var data4 = await response4.json();
   buildCrafting(data4);
+
+  var data5 = await response5.json();
+  displayManualCompletion(data5);
 
   HideLoader(loader);
 }
@@ -127,7 +134,8 @@ function buildWV(section, data) {
     var template = document.getElementById("template-wv");
 
     var clone = template.content.cloneNode(true);
-    if (complete === "Yes") clone.querySelector("[data-id='row']").classList.add("complete");
+    if (complete === "Yes")
+      clone.querySelector("[data-id='row']").classList.add("complete");
     clone.querySelector("[data-id='complete']").textContent = complete;
     clone.querySelector("[data-id='type']").textContent = rec.track;
     clone.querySelector("[data-id='name']").textContent = rec.title;
@@ -137,7 +145,9 @@ function buildWV(section, data) {
 }
 
 function buildCrafting(data) {
-  var rows = document.querySelectorAll("div[data-id='crafting'] div[data-id='row']");
+  var rows = document.querySelectorAll(
+    "div[data-id='crafting'] div[data-id='row']",
+  );
   rows.forEach((row) => {
     var complete = row.querySelector("[data-id='complete']");
     if (data.includes(row.id)) {
@@ -146,167 +156,54 @@ function buildCrafting(data) {
   });
 }
 
-//
+function displayManualCompletion(data) {
+  // console.log(data);
+  document.querySelectorAll("[data-key]").forEach((el) => {
+    var value = el.getAttribute("data-key");
+    var lnk = el.querySelector("a[data-id][data-value]");
 
-var storage =
-  today.getUTCFullYear() +
-  "-" +
-  (today.getUTCMonth() + 1) +
-  "-" +
-  today.getUTCDate();
-
-var storageDailyName = "todo_daily-" + storage;
-
-var storageDaily = [];
-
-if (getStorage(storageDailyName) === null) {
-  setStorage(storageDailyName, storageDaily);
-} else {
-  storageDaily = JSON.parse(getStorage(storageDailyName));
-}
-
-document.querySelectorAll("[data-id='daily']").forEach((el) => {
-  var value = el.getAttribute("data-value");
-  var rec = storageDaily.indexOf(value);
-  document.querySelectorAll("[data-key='" + value + "']").forEach((el) => {
-    if (rec > -1) {
+    var complete = false;
+    if (data.indexOf(value) > -1) {
+      complete = true;
       el.classList.add("complete");
+      lnk.textContent = "Yes";
     } else {
       el.classList.remove("complete");
+      lnk.textContent = "No";
     }
+    // console.log(value, complete);
   });
-  document.querySelectorAll("[data-value='" + value + "']").forEach((el) => {
-    if (rec > -1) {
-      el.textContent = "Yes";
-    } else {
-      el.textContent = "No";
-    }
-  });
+}
 
-  el.addEventListener("click", toggleComplete);
-});
-
-function toggleComplete(e) {
+async function toggleComplete(e) {
   var val = e.target.getAttribute("data-value");
-  var rec = storageDaily.indexOf(val);
-  var add = true;
-  if (rec > -1) {
-    storageDaily.splice(rec, 1);
-    add = false;
-  } else {
-    storageDaily.push(val);
+
+  var data = new FormData();
+  data.append("identifier", val);
+
+  var response = await fetch(
+    "/api/todo-completion.php?api_key=" + api_key + "&" + caching,
+    {
+      method: "POST",
+      body: data,
+    },
+  );
+
+  if (!response.ok) {
+    alert("An Error Occurred");
+    throw new Error(`${response.statusText}`);
   }
 
-  setStorage(storageDailyName, storageDaily);
-
-  document.querySelectorAll("[data-key='" + val + "']").forEach((el) => {
-    if (add) {
-      el.classList.add("complete");
-    } else {
-      el.classList.remove("complete");
-    }
-  });
-  document.querySelectorAll("[data-value='" + val + "']").forEach((el) => {
-    if (add) {
-      el.textContent = "Yes";
-    } else {
-      el.textContent = "No";
-    }
-  });
+  fetch("/api/todo-completion.php?api_key=" + api_key + "&" + caching, {
+    method: "GET",
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      displayManualCompletion(data);
+    });
 }
 
-//
-
-var previous_weekly_reset = new Date(returnDailyReset());
-previous_weekly_reset.setUTCDate(previous_weekly_reset.getUTCDate() - 7);
-
-var storage =
-  previous_weekly_reset.getUTCFullYear() +
-  "-" +
-  (previous_weekly_reset.getUTCMonth() + 1) +
-  "-" +
-  previous_weekly_reset.getUTCDate();
-
-var storageWeeklyName = "todo_weekly-" + storage;
-
-var storageWeekly = [];
-
-if (getStorage(storageWeeklyName) === null) {
-  setStorage(storageWeeklyName, storageWeekly);
-} else {
-  storageWeekly = JSON.parse(getStorage(storageWeeklyName));
-}
-
-document.querySelectorAll("[data-id='weekly']").forEach((el) => {
-  var value = el.getAttribute("data-value");
-  var rec = storageWeekly.indexOf(value);
-  document.querySelectorAll("[data-key='" + value + "']").forEach((el) => {
-    if (rec > -1) {
-      el.classList.add("complete");
-    } else {
-      el.classList.remove("complete");
-    }
-  });
-  document.querySelectorAll("[data-value='" + value + "']").forEach((el) => {
-    if (rec > -1) {
-      el.textContent = "Yes";
-    } else {
-      el.textContent = "No";
-    }
-  });
-
-  el.addEventListener("click", toggleCompleteWeekly);
+document.querySelectorAll("[data-key]").forEach((el) => {
+  var lnk = el.querySelector("a[data-id][data-value]");
+  lnk.addEventListener("click", toggleComplete);
 });
-
-function toggleCompleteWeekly(e) {
-  var val = e.target.getAttribute("data-value");
-  var rec = storageWeekly.indexOf(val);
-  var add = true;
-  if (rec > -1) {
-    storageWeekly.splice(rec, 1);
-    add = false;
-  } else {
-    storageWeekly.push(val);
-  }
-
-  setStorage(storageWeeklyName, storageWeekly);
-
-  document.querySelectorAll("[data-key='" + val + "']").forEach((el) => {
-    if (add) {
-      el.classList.add("complete");
-    } else {
-      el.classList.remove("complete");
-    }
-  });
-  document.querySelectorAll("[data-value='" + val + "']").forEach((el) => {
-    if (add) {
-      el.textContent = "Yes";
-    } else {
-      el.textContent = "No";
-    }
-  });
-}
-
-//
-
-var templateBookmark = document.getElementById("template-bookmark");
-
-document
-  .querySelectorAll("[data-id='manual-daily']")
-  .forEach((rec) => {
-    var bookmark = templateBookmark.content.cloneNode(true);
-    var a = bookmark.querySelector("a");
-    a.href = "#manual-daily-" + rec.innerText;
-    a.innerText = rec.innerText;
-    document.getElementById("bookmarks-manual-daily").append(bookmark);
-  });
-
-document
-  .querySelectorAll("[data-id='manual-weekly']")
-  .forEach((rec) => {
-    var bookmark = templateBookmark.content.cloneNode(true);
-    var a = bookmark.querySelector("a");
-    a.href = "#manual-weekly-" + rec.innerText;
-    a.innerText = rec.innerText;
-    document.getElementById("bookmarks-manual-weekly").append(bookmark);
-  });

@@ -7,8 +7,20 @@ $template = new Template();
 
 $template->returnHeader();
 
-$todos = json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/_data/todos-daily.json"));
-$todoWs = json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/_data/todos-weekly.json"));
+include_once("/var/www/gw2/_php/DataAccess/DataAccess.php");
+$data = new DataAccess();
+
+$sections = [];
+$todos = [];
+
+foreach ($data->todos()->getTodoSections() as $rec) {
+    array_push($sections, json_decode($rec->toString()));
+    $todos[$rec->name()] = [];
+}
+
+foreach ($data->todos()->getTodos() as $rec) {
+    array_push($todos[$rec->section()], json_decode($rec->toString()));
+}
 
 ?>
 
@@ -30,12 +42,13 @@ $todoWs = json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/_data/todo
     <li><a href="#crafting">Crafting</a></li>
     <li><a href="#manual">Manual</a>
         <ul>
-            <li><a href="#manual-daily">Daily</a>
-                <ul id="bookmarks-manual-daily"></ul>
-            </li>
-            <li><a href="#manual-weekly">Weekly</a>
-                <ul id="bookmarks-manual-weekly"></ul>
-            </li>
+            <?php
+            foreach ($sections as $section) {
+            ?>
+                <li><a href="#manual-<?php echo $section->name; ?>"><?php echo $section->name; ?></a></li>
+            <?php
+            }
+            ?>
         </ul>
     </li>
 </ul>
@@ -145,86 +158,44 @@ $todoWs = json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'] . "/_data/todo
 
 <h3 id="manual">Manual</h3>
 
-<h4 id="manual-daily">Daily</h4>
-<div class="manual-daily">
+<div class="manual">
     <?php
-    $section = "";
-    foreach ($todos as $todo) {
-        if ($section !== $todo->section) {
-            if ($section !== "") {
+    foreach ($sections as $section) {
     ?>
-</div>
-<?php
-            }
-            $section = $todo->section;
-?>
-<div class="form-group table-manual-daily">
-    <h5 data-id="manual-daily" id="manual-daily-<?php echo $section; ?>"><?php echo $section; ?></h5>
-<?php
-        }
-?>
-<div data-id="row" data-key="<?php echo $todo->id; ?>">
-    <div><a data-id="daily" data-value="<?php echo $todo->id; ?>" href="javascript:void(0)">Checking..</a></div>
-    <div data-id="name"><?php echo $todo->name; ?></div>
-</div>
-<?php
-    }
-    if (count($todos) > 0) {
-?>
-</div>
-<?php
-    }
-?>
-</div>
+        <div>
+            <h4 id="manual-<?php echo $section->name; ?>">
+                <?php
+                if (isset($section->url)) {
+                ?>
+                    <a href="<?php echo $section->url; ?>" target="_blank"><?php echo $section->name; ?></a>
+                <?php
+                } else {
+                    echo $section->name;
+                }
+                ?>
+            </h4>
 
-<div class="form-group">
-    <a href="#top">Top</a>
-</div>
+            <div class="form-group table-manual">
+                <?php
+                foreach ($todos[$section->name] as $rec) {
+                ?>
+                    <div data-id="row" data-key="<?php echo $rec->identifier; ?>">
+                        <div data-id="type"><?php echo ucwords($rec->type); ?></div>
+                        <div><a data-id="manual" data-value="<?php echo $rec->identifier; ?>" href="javascript:void(0)">Checking..</a></div>
+                        <div data-id="name"><?php echo $rec->name; ?></div>
+                    </div>
+                <?php
+                }
+                ?>
+            </div>
 
-<h4 id="manual-weekly">Weekly</h4>
-<div class="manual-weekly">
+            <div class="form-group">
+                <a href="#top">Top</a>
+            </div>
+        </div>
     <?php
-    $section = "";
-    foreach ($todoWs as $todo) {
-        if ($section !== $todo->section) {
-            if ($section != "") {
+    }
     ?>
-</div>
-<?php
-            }
-            $section = $todo->section;
-?>
-<div class="form-group table-manual-weekly">
-    <h5 data-id="manual-weekly" id="manual-weekly-<?php echo $section; ?>">
-        <?php
-            if (property_exists($todo, "url")) {
-        ?>
-            <a href="<?php echo $todo->url; ?>" target="_blank"><?php echo $section; ?></a>
-        <?php
-            } else {
-                echo $section;
-            }
-        ?>
-    </h5>
-<?php
-        }
-?>
-<div data-id="row" data-key="<?php echo $todo->id; ?>">
-    <div><a data-id="weekly" data-value="<?php echo $todo->id; ?>" href="javascript:void(0)">Checking..</a></div>
-    <div data-id="name"><?php echo $todo->name; ?></div>
-</div>
-<?php
-    }
-    if (count($todos) > 0) {
-?>
-</div>
-<?php
-    }
-?>
-</div>
-
-<div class="form-group">
-    <a href="#top">Top</a>
 </div>
 
 <?php
