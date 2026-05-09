@@ -53,8 +53,8 @@ async function Run() {
   console.log("After Materials");
 
   var chunks = [];
-  for (var x = 0; x < ids.length; x += 200) {
-    var chunk = ids.slice(x, x + 200);
+  for (var x = 0; x < ids.length; x += 100) {
+    var chunk = ids.slice(x, x + 100);
     chunks.push(chunk);
   }
   console.log("Chunk Count: " + chunks.length);

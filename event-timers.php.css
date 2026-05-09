@@ -1,17 +1,67 @@
-td[data-id="next"] {
-  width: 100px;
-  text-align: center;
-}
-
-table p {
-  margin-block-start: 0.5rem;
-  margin-block-end: 0.5rem;
-}
-
-tr.complete {
+div.complete {
   background-color: var(--complete-background);
   color: var(--complete-text) !important;
 }
-tr.complete [data-id="val"] {
+div.complete [data-id="val"] {
   text-decoration: line-through;
+}
+
+/*  */
+
+div.next-events h4,
+div.all-events h4 {
+  padding: 0.5rem;
+  background-color: var(--table-border-color);
+  margin-block-end: 0;
+}
+
+div.table-next-events,
+div.table-all-events {
+  display: grid;
+  row-gap: 0.5rem;
+}
+
+div.table-next-events > div {
+  display: grid;
+  grid-template-columns: 2fr 4fr 1fr;
+  grid-template-areas: "section name next";
+  column-gap: 0.5rem;
+  row-gap: 0.5rem;
+  padding: 0.5rem;
+  border-bottom: 5px solid var(--table-border-color);
+}
+
+div.table-next-events > div [data-id="section"] {
+  grid-area: section;
+  align-self: center;
+}
+div.table-next-events > div [data-id="name"] {
+  grid-area: name;
+}
+div.table-next-events > div [data-id="next"] {
+  grid-area: next;
+  align-self: center;
+}
+
+div.table-all-events > div {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
+  grid-template-areas:
+    "name next"
+    "others others";
+  column-gap: 0.5rem;
+  row-gap: 0.5rem;
+  padding: 0.5rem;
+  border-bottom: 5px solid var(--table-border-color);
+}
+
+div.table-all-events > div [data-id="name"] {
+  grid-area: name;
+}
+div.table-all-events > div [data-id="next"] {
+  grid-area: next;
+  align-self: center;
+}
+div.table-all-events > div [data-id="others"] {
+  grid-area: others;
 }

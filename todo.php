@@ -28,18 +28,19 @@ foreach ($data->todos()->getTodos() as $rec) {
 
 <div class="alert alert-info" id="play-message" style="display:none;">
     <p>You have not played today!</p>
+    <p>Data pulled from the API has been hidden.</p>
 </div>
 
 <ul id="bookmarks">
-    <li><a href="#resets">Resets</a></li>
-    <li><a href="#wizards-vault">Wizards Vault</a>
+    <li data-auto="true"><a href="#resets">Resets</a></li>
+    <li data-auto="true"><a href="#wizards-vault">Wizards Vault</a>
         <ul>
             <li><a href="#wizards-vault-daily">Daily</a></li>
             <li><a href="#wizards-vault-weekly">Weekly</a></li>
             <li><a href="#wizards-vault-special">Special</a></li>
         </ul>
     </li>
-    <li><a href="#crafting">Crafting</a></li>
+    <li data-auto="true"><a href="#crafting">Crafting</a></li>
     <li><a href="#manual">Manual</a>
         <ul>
             <?php
@@ -82,9 +83,9 @@ foreach ($data->todos()->getTodos() as $rec) {
     <a href="#top">Top</a>
 </div>
 
-<h3 id="wizards-vault">Wizards Vault</h3>
+<h3 id="wizards-vault" data-auto="true">Wizards Vault</h3>
 
-<div class="wizards-vault">
+<div class="wizards-vault" data-auto="true">
     <div class="wizards-vault-daily">
         <h4 id="wizards-vault-daily">Daily</h4>
         <p><a href="https://wiki.guildwars2.com/wiki/Wizard%27s_Vault#Daily" target="_blank">Wiki Information</a></p>
@@ -132,27 +133,29 @@ foreach ($data->todos()->getTodos() as $rec) {
 </template>
 
 
-<h3 id="crafting">Crafting</h3>
-<div data-id="crafting" class="form-group table-crafting">
-    <div id="charged_quartz_crystal" data-id="row">
-        <div>Charged Quartz Crystal</div>
+<h3 id="crafting" data-auto="true">Crafting</h3>
+<div class="crafting" data-auto="true">
+    <div data-id="crafting" class="form-group table-crafting">
+        <div id="charged_quartz_crystal" data-id="row">
+            <div>Charged Quartz Crystal</div>
+        </div>
+        <div id="glob_of_elder_spirit_residue" data-id="row">
+            <div>Glob of Elder Spirit Residue</div>
+        </div>
+        <div id="lump_of_mithrilium" data-id="row">
+            <div>Lump of Mithrilium</div>
+        </div>
+        <div id="spool_of_silk_weaving_thread" data-id="row">
+            <div>Spool of Silk Weaving Thread</div>
+        </div>
+        <div id="spool_of_thick_elonian_cord" data-id="row">
+            <div>Spool of Thick Elonian Cord</div>
+        </div>
     </div>
-    <div id="glob_of_elder_spirit_residue" data-id="row">
-        <div>Glob of Elder Spirit Residue</div>
-    </div>
-    <div id="lump_of_mithrilium" data-id="row">
-        <div>Lump of Mithrilium</div>
-    </div>
-    <div id="spool_of_silk_weaving_thread" data-id="row">
-        <div>Spool of Silk Weaving Thread</div>
-    </div>
-    <div id="spool_of_thick_elonian_cord" data-id="row">
-        <div>Spool of Thick Elonian Cord</div>
-    </div>
-</div>
 
-<div class="form-group">
-    <a href="#top">Top</a>
+    <div class="form-group">
+        <a href="#top">Top</a>
+    </div>
 </div>
 
 

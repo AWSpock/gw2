@@ -50,6 +50,9 @@ var response = fetch(
       checkCompletion();
     } else {
       document.getElementById("play-message").style.display = "block";
+      document.querySelectorAll("[data-auto='true']").forEach((el) => {
+        el.style.display = "none";
+      });
       HideLoader(loader);
     }
   });
@@ -93,9 +96,6 @@ async function checkCompletion() {
           method: "GET",
         },
       ),
-      fetch("/api/todo-completion.php?api_key=" + api_key + "&" + caching, {
-        method: "GET",
-      }),
     ]);
 
   var data1 = await response1.json();
@@ -109,9 +109,6 @@ async function checkCompletion() {
 
   var data4 = await response4.json();
   buildCrafting(data4);
-
-  var data5 = await response5.json();
-  displayManualCompletion(data5);
 
   HideLoader(loader);
 }
@@ -156,24 +153,31 @@ function buildCrafting(data) {
   });
 }
 
-function displayManualCompletion(data) {
-  // console.log(data);
-  document.querySelectorAll("[data-key]").forEach((el) => {
-    var value = el.getAttribute("data-key");
-    var lnk = el.querySelector("a[data-id][data-value]");
+async function displayManualCompletion() {
+  fetch("/api/todo-completion.php?api_key=" + api_key + "&" + caching, {
+    method: "GET",
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      document.querySelectorAll("[data-key]").forEach((el) => {
+        var value = el.getAttribute("data-key");
+        var lnk = el.querySelector("a[data-id][data-value]");
 
-    var complete = false;
-    if (data.indexOf(value) > -1) {
-      complete = true;
-      el.classList.add("complete");
-      lnk.textContent = "Yes";
-    } else {
-      el.classList.remove("complete");
-      lnk.textContent = "No";
-    }
-    // console.log(value, complete);
-  });
+        var complete = false;
+        if (data.indexOf(value) > -1) {
+          complete = true;
+          el.classList.add("complete");
+          lnk.textContent = "Yes";
+        } else {
+          el.classList.remove("complete");
+          lnk.textContent = "No";
+        }
+        // console.log(value, complete);
+      });
+    });
 }
+
+displayManualCompletion();
 
 async function toggleComplete(e) {
   var val = e.target.getAttribute("data-value");
@@ -194,13 +198,7 @@ async function toggleComplete(e) {
     throw new Error(`${response.statusText}`);
   }
 
-  fetch("/api/todo-completion.php?api_key=" + api_key + "&" + caching, {
-    method: "GET",
-  })
-    .then((response) => response.json())
-    .then((data) => {
-      displayManualCompletion(data);
-    });
+  displayManualCompletion();
 }
 
 document.querySelectorAll("[data-key]").forEach((el) => {

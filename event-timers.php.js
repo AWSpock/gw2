@@ -65,51 +65,100 @@ async function checkCompletion() {
 
 //
 
-var storageName =
-  today.getUTCFullYear() +
-  "-" +
-  (today.getUTCMonth() + 1) +
-  "-" +
-  today.getUTCDate();
+async function displayManualCompletion() {
+  fetch("/api/event-completion.php?api_key=" + api_key + "&" + caching, {
+    method: "GET",
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      document.querySelectorAll("[data-manual]").forEach((el) => {
+        var value = el.getAttribute("data-manual");
 
-var storageManualName = "event_manual-" + storageName;
-
-var storageManual = [];
-
-if (getStorage(storageManualName) === null) {
-  setStorage(storageManualName, storageManual);
-} else {
-  storageManual = JSON.parse(getStorage(storageManualName));
+        var complete = false;
+        if (data.indexOf(value) > -1) {
+          complete = true;
+          el.classList.add("complete");
+        } else {
+          el.classList.remove("complete");
+        }
+        // console.log(value, complete);
+      });
+    });
 }
 
-storageManual.forEach((rec) => {
-  document.querySelectorAll("[data-key='" + rec + "']").forEach((el) => {
-    el.classList.add("complete");
-  });
-});
+displayManualCompletion();
 
-document.querySelectorAll("[data-id='complete']").forEach((el) => {
+async function toggleComplete(e) {
+  var val = e.target.getAttribute("data-value");
+
+  var data = new FormData();
+  data.append("identifier", val);
+
+  var response = await fetch(
+    "/api/event-completion.php?api_key=" + api_key + "&" + caching,
+    {
+      method: "POST",
+      body: data,
+    },
+  );
+
+  if (!response.ok) {
+    alert("An Error Occurred");
+    throw new Error(`${response.statusText}`);
+  }
+
+  displayManualCompletion();
+}
+
+document.querySelectorAll("a[data-value]").forEach((el) => {
   el.addEventListener("click", toggleComplete);
 });
 
-function toggleComplete(e) {
-  var val = e.target.getAttribute("data-value");
-  var rec = storageManual.indexOf(val);
-  var add = true;
-  if (rec > -1) {
-    storageManual.splice(rec, 1);
-    add = false;
-  } else {
-    storageManual.push(val);
-  }
+// var storageName =
+//   today.getUTCFullYear() +
+//   "-" +
+//   (today.getUTCMonth() + 1) +
+//   "-" +
+//   today.getUTCDate();
 
-  setStorage(storageManualName, storageManual);
+// var storageManualName = "event_manual-" + storageName;
 
-  document.querySelectorAll("[data-key='" + val + "']").forEach((el) => {
-    if (add) {
-      el.classList.add("complete");
-    } else {
-      el.classList.remove("complete");
-    }
-  });
-}
+// var storageManual = [];
+
+// if (getStorage(storageManualName) === null) {
+//   setStorage(storageManualName, storageManual);
+// } else {
+//   storageManual = JSON.parse(getStorage(storageManualName));
+// }
+
+// storageManual.forEach((rec) => {
+//   document.querySelectorAll("[data-key='" + rec + "']").forEach((el) => {
+//     el.classList.add("complete");
+//   });
+// });
+
+// document.querySelectorAll("[data-id='complete']").forEach((el) => {
+//   el.addEventListener("click", toggleComplete);
+// });
+
+// function toggleComplete(e) {
+//   var val = e.target.getAttribute("data-value");
+//   var rec = storageManual.indexOf(val);
+//   var add = true;
+//   if (rec > -1) {
+//     storageManual.splice(rec, 1);
+//     add = false;
+//   } else {
+//     storageManual.push(val);
+//   }
+
+//   setStorage(storageManualName, storageManual);
+
+//   document.querySelectorAll("[data-key='" + val + "']").forEach((el) => {
+//     if (add) {
+//       el.classList.add("complete");
+//     } else {
+//       el.classList.remove("complete");
+//     }
+//   });
+// }
