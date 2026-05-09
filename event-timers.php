@@ -65,54 +65,60 @@ foreach ($nextEvents as $event) {
     </li>
 </ul>
 
-<h3 id="next">Next</h3>
+<h3 id="next">Next Events</h3>
 
 <div class="next-events">
     <?php
     foreach ($sectionsNext as $section) {
     ?>
-        <h4 utc-convert><?php echo $section->format("Y-m-d\TH:i:s\Z"); ?></h4>
+        <div>
+            <h4 utc-convert><?php echo $section->format("Y-m-d\TH:i:s\Z"); ?></h4>
 
-        <div class="form-group table-next-events">
-            <?php
-            $es = array_filter($nextEvents, function ($event) use ($section) {
-                return $event->occurrences[0] == $section;
-            });
-            foreach ($es as $event) {
-            ?>
-                <div
-                    <?php
-                    if (property_exists($event, "manual"))
-                        echo "data-manual='" . $event->manual . "'";
-                    if (property_exists($event, "id"))
-                        echo "data-key='" . $event->id . "'";
-                    ?>>
-                    <div data-id="section"><?php echo $event->section; ?></div>
-                    <div data-id="name">
-                        <a data-id="val" target="_blank" href="<?php echo $event->url; ?>"><?php echo $event->name; ?></a>
+            <div class="form-group table-next-events">
+                <?php
+                $es = array_filter($nextEvents, function ($event) use ($section) {
+                    return $event->occurrences[0] == $section;
+                });
+                foreach ($es as $event) {
+                ?>
+                    <div
                         <?php
-                        if (property_exists($event, "manual")) {
+                        if (property_exists($event, "manual"))
+                            echo "data-manual='" . $event->manual . "'";
+                        if (property_exists($event, "id"))
+                            echo "data-key='" . $event->id . "'";
+                        ?>>
+                        <div data-id="section"><?php echo $event->section; ?></div>
+                        <div data-id="name">
+                            <a data-id="val" target="_blank" href="<?php echo $event->url; ?>"><?php echo $event->name; ?></a>
+                            <?php
+                            if (property_exists($event, "manual")) {
+                            ?>
+                                <div><a data-id="complete" data-value="<?php echo $event->manual; ?>" href="javascript:void(0)">(Toggle Completion)</a></div>
+                            <?php
+                            }
+                            ?>
+                        </div>
+                        <?php
+                        /*if (property_exists($event, "occurrences")) {
                         ?>
-                            <div><a data-id="complete" data-value="<?php echo $event->manual; ?>" href="javascript:void(0)">(Toggle Completion)</a></div>
+                            <div data-id="next" utc-convert><?php echo $event->occurrences[0]->format("Y-m-d\TH:i:s\Z"); ?></div>
                         <?php
-                        }
+                        } else {
+                        ?>
+                            <div data-id="next">No Timer</div>
+                        <?php
+                        }*/
                         ?>
                     </div>
-                    <?php
-                    if (property_exists($event, "occurrences")) {
-                    ?>
-                        <div data-id="next" utc-convert><?php echo $event->occurrences[0]->format("Y-m-d\TH:i:s\Z"); ?></div>
-                    <?php
-                    } else {
-                    ?>
-                        <div data-id="next">No Timer</div>
-                    <?php
-                    }
-                    ?>
-                </div>
-            <?php
-            }
-            ?>
+                <?php
+                }
+                ?>
+            </div>
+
+            <div class="form-group">
+                <a href="#top">Top</a>
+            </div>
         </div>
     <?php
     }
@@ -126,57 +132,63 @@ foreach ($nextEvents as $event) {
     <?php
     foreach ($sections as $section) {
     ?>
-        <h4 id="<?php echo $section; ?>"><?php echo $section; ?></h4>
+        <div>
+            <h4 id="<?php echo $section; ?>"><?php echo $section; ?></h4>
 
-        <div class="form-group table-all-events">
-            <?php
-            $es = array_filter($events, function ($event) use ($section) {
-                return $event->section == $section;
-            });
-            foreach ($es as $event) {
-            ?>
-                <div
-                    <?php
-                    if (property_exists($event, "manual"))
-                        echo "data-manual='" . $event->manual . "'";
-                    if (property_exists($event, "id"))
-                        echo "data-key='" . $event->id . "'";
-                    ?>>
-                    <div data-id="name">
-                        <a data-id="val" target="_blank" href="<?php echo $event->url; ?>"><?php echo $event->name; ?></a>
+            <div class="form-group table-all-events">
+                <?php
+                $es = array_filter($events, function ($event) use ($section) {
+                    return $event->section == $section;
+                });
+                foreach ($es as $event) {
+                ?>
+                    <div
                         <?php
-                        if (property_exists($event, "manual")) {
-                        ?>
-                            <div><a data-id="complete" data-value="<?php echo $event->manual; ?>" href="javascript:void(0)">(Toggle Completion)</a></div>
-                        <?php
-                        }
-                        ?>
-                    </div>
-                    <?php
-                    if (property_exists($event, "occurrences")) {
-                    ?>
-                        <div data-id="next" utc-convert><?php echo $event->occurrences[0]->format("Y-m-d\TH:i:s\Z"); ?></div>
-                        <div data-id="others">
+                        if (property_exists($event, "manual"))
+                            echo "data-manual='" . $event->manual . "'";
+                        if (property_exists($event, "id"))
+                            echo "data-key='" . $event->id . "'";
+                        ?>>
+                        <div data-id="name">
+                            <a data-id="val" target="_blank" href="<?php echo $event->url; ?>"><?php echo $event->name; ?></a>
                             <?php
-                            for ($x = 1; $x < count($event->occurrences); $x++) {
+                            if (property_exists($event, "manual")) {
                             ?>
-                                <span utc-convert><?php echo $event->occurrences[$x]->format("Y-m-d\TH:i:s\Z"); ?></span><?php echo ($x < count($event->occurrences) - 1 ? ", " : ""); ?>
+                                <div><a data-id="complete" data-value="<?php echo $event->manual; ?>" href="javascript:void(0)">(Toggle Completion)</a></div>
                             <?php
                             }
                             ?>
                         </div>
-                    <?php
-                    } else {
-                    ?>
-                        <div data-id="next">No Timer</div>
-                        <!-- <div data-id="others">No Timer</div> -->
-                    <?php
-                    }
-                    ?>
-                </div>
-            <?php
-            }
-            ?>
+                        <?php
+                        if (property_exists($event, "occurrences")) {
+                        ?>
+                            <div data-id="next" utc-convert><?php echo $event->occurrences[0]->format("Y-m-d\TH:i:s\Z"); ?></div>
+                            <div data-id="others">
+                                <?php
+                                for ($x = 1; $x < count($event->occurrences); $x++) {
+                                ?>
+                                    <span utc-convert><?php echo $event->occurrences[$x]->format("Y-m-d\TH:i:s\Z"); ?></span><?php echo ($x < count($event->occurrences) - 1 ? ", " : ""); ?>
+                                <?php
+                                }
+                                ?>
+                            </div>
+                        <?php
+                        } else {
+                        ?>
+                            <div data-id="next">No Timer</div>
+                            <!-- <div data-id="others">No Timer</div> -->
+                        <?php
+                        }
+                        ?>
+                    </div>
+                <?php
+                }
+                ?>
+            </div>
+
+            <div class="form-group">
+                <a href="#top">Top</a>
+            </div>
         </div>
     <?php
     }
