@@ -99,6 +99,7 @@ class Template
                     <li><a href="/wallet.php<?php $this->echoApiKeyLink(); ?>" class="hvr-icon-buzz-out hvr-bounce-to-right"><i class="fa-solid fa-wallet hvr-icon"></i>Wallet</a></li>
                     <li><a href="/bank.php<?php $this->echoApiKeyLink(); ?>" class="hvr-icon-buzz-out hvr-bounce-to-right"><i class="fa-solid fa-vault hvr-icon"></i>Bank</a></li>
                     <li><a href="/material-storage.php<?php $this->echoApiKeyLink(); ?>" class="hvr-icon-buzz-out hvr-bounce-to-right"><i class="fa-solid fa-toolbox hvr-icon"></i>Material Storage</a></li>
+                    <li><a href="/portable-wizards-tower-exchange.php<?php $this->echoApiKeyLink(); ?>" class="hvr-icon-buzz-out hvr-bounce-to-right"><i class="fa-solid fa-toolbox hvr-icon"></i>Portable Wizard's Tower Exchange</a></li>
                 </ul>
             </nav>
             <div class="content">

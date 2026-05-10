@@ -116,7 +116,7 @@ async function checkCompletion() {
 function buildWV(section, data) {
   var progress = document.getElementById("wz" + section + "-status");
   if (progress) {
-    if (data.meta_progress_complete == data.meta_progress_current) {
+    if (data.meta_progress_complete <= data.meta_progress_current) {
       progress.textContent = "Complete!";
     } else {
       progress.textContent = "Incomplete";
