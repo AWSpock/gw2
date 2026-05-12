@@ -22,19 +22,19 @@ class Template
             $this->current_page = "/index.php";
     }
 
-    private function IncludeCSS($file)
+    public function IncludeCSS($file)
     {
         if (file_exists($_SERVER['DOCUMENT_ROOT'] . $file)) {
             return "<link rel='stylesheet' type='text/css' href='" . $file . "?v=" . filemtime($_SERVER['DOCUMENT_ROOT'] . $file) . "' />\n";
         }
     }
-    private function IncludeJS($file)
+    public function IncludeJS($file)
     {
         if (file_exists($_SERVER['DOCUMENT_ROOT'] . $file)) {
             return "<script src='" . $file . "?v=" . filemtime($_SERVER['DOCUMENT_ROOT'] . $file) . "'></script>\n";
         }
     }
-    private function echoApiKeyLink()
+    public function echoApiKeyLink()
     {
         echo isset($this->global->api_key) ? "?api_key=" . $this->global->api_key : "";
     }
@@ -100,6 +100,7 @@ class Template
                     <li><a href="/bank.php<?php $this->echoApiKeyLink(); ?>" class="hvr-icon-buzz-out hvr-bounce-to-right"><i class="fa-solid fa-vault hvr-icon"></i>Bank</a></li>
                     <li><a href="/material-storage.php<?php $this->echoApiKeyLink(); ?>" class="hvr-icon-buzz-out hvr-bounce-to-right"><i class="fa-solid fa-toolbox hvr-icon"></i>Material Storage</a></li>
                     <li><a href="/portable-wizards-tower-exchange.php<?php $this->echoApiKeyLink(); ?>" class="hvr-icon-buzz-out hvr-bounce-to-right"><i class="fa-solid fa-toolbox hvr-icon"></i>Portable Wizard's Tower Exchange</a></li>
+                    <li><a href="/price-compare.php<?php $this->echoApiKeyLink(); ?>" class="hvr-icon-buzz-out hvr-bounce-to-right"><i class="fa-solid fa-chart-line hvr-icon"></i>Price Compare</a></li>
                 </ul>
             </nav>
             <div class="content">

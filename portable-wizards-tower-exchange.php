@@ -53,7 +53,7 @@ foreach ($sections as $section) {
             <?php
             foreach ($items[$section->name] as $item) {
             ?>
-                <div data-id="row" data-item="<?php echo $item->api_id; ?>">
+                <div data-id="row" data-<?php echo $item->type; ?>="<?php echo $item->api_id; ?>">
                     <div data-id="img"><img></div>
                     <div data-id="name"><a>Loading..</a></div>
                     <div data-id="amount">Loading..</div>

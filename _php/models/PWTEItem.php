@@ -8,6 +8,7 @@ class PWTEItem
 
     protected $section;
     protected $api_id;
+    protected $type;
     protected $order;
 
     public function __construct($rec = null)
@@ -19,6 +20,7 @@ class PWTEItem
             $this->updated = (array_key_exists("updated", $rec) && $rec['updated'] !== NULL) ? $rec['updated'] : null;
             $this->section = (array_key_exists("section", $rec) && $rec['section'] !== NULL) ? $rec['section'] : null;
             $this->api_id = (array_key_exists("api_id", $rec) && $rec['api_id'] !== NULL) ? $rec['api_id'] : null;
+            $this->type = (array_key_exists("type", $rec) && $rec['type'] !== NULL) ? $rec['type'] : null;
             $this->order = (array_key_exists("order", $rec) && $rec['order'] !== NULL) ? $rec['order'] : null;
         }
     }
@@ -29,6 +31,7 @@ class PWTEItem
         $rec1['updated'] = $db['updated'];
         $rec1['section'] = $db['section'];
         $rec1['api_id'] = $db['api_id'];
+        $rec1['type'] = $db['type'];
         $rec1['order'] = $db['order'];
         $new = new static($rec1);
         return $new;
@@ -54,6 +57,10 @@ class PWTEItem
     {
         return $this->api_id;
     }
+    public function type()
+    {
+        return $this->type;
+    }
     public function order()
     {
         return ($this->order === NULL) ? null : intval($this->order);
@@ -67,6 +74,7 @@ class PWTEItem
             "updated" => $this->updated(),
             "section" => $this->section(),
             "api_id" => $this->api_id(),
+            "type" => $this->type(),
             "order" => $this->order()
         ];
 

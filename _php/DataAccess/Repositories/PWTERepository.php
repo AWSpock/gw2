@@ -66,7 +66,7 @@ class PWTERepository
         }
 
         $sql = "
-            SELECT a.`id`, a.`created`, a.`updated`, b.`name` AS section, a.`api_id`, a.`order`
+            SELECT a.`id`, a.`created`, a.`updated`, b.`name` AS section, a.`api_id`, a.`type`, a.`order`
             FROM pwte_item a
                 INNER JOIN pwte_section b
                     ON a.`section_id` = b.`id`

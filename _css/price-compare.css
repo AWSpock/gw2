@@ -1,0 +1,43 @@
+div[data-id="container"] {
+    display: grid;
+    grid-auto-flow: column;
+}
+
+div[data-col] {
+    padding: .5rem;
+}
+
+div[data-col].winner {
+    background-color: var(--table-border-color);
+}
+
+div[data-group] {
+    display: grid;
+    row-gap: 1rem;
+}
+
+div[data-group] span[data-id="name"] {
+    font-size: 1.2rem;
+}
+
+div[data-item-id] {
+    display: grid;
+    text-align: center;
+}
+
+div[data-item-id] img {
+    place-self: center;
+}
+
+div[data-item-id] div.inline {
+    display: flex;
+    justify-content: space-between;
+}
+
+div[data-item-id] div.inline div.form-group {
+    display: grid;
+}
+
+div[data-item-id] label {
+    font-weight: bold;
+}
